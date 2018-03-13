@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
+        <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/home/js/jquery.js"></script>   
+    </head>
+    <body>
+        <ol class="breadcrumb">
+          <li class="active">管理员列表</li>
+          <li><a href="__CONTROLLER__/AddAdmin">添加管理员</a></li>
+        </ol>
+    </body>
+    <table class="table table-hover">
+        <tr class="success">
+            <th>管理员ID</th>
+            <th>管理员用户名</th>
+            <th>邮箱</th>
+            <th>管理操作</th>
+        </tr>
+        <foreach name="data" item="row">
+            <tr>
+                <td>{$row.userid}</td>
+                <td>{$row.username}</td>
+                <td>{$row.email}</td>
+                <td><a href="__CONTROLLER__/AdminEdit/id/{$row.userid}">修改</a>| <a href="__CONTROLLER__/AdminDel/id/{$row.userid}" onclick="return confirm('真的要删除吗')">删除</a></td>
+            </tr>
+        </foreach>  
+    </table>
+</html>

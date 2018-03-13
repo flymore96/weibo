@@ -1,0 +1,379 @@
+<extend name="Public:header" />
+<block name="title">首页</block>
+<block name="link">
+    <link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">  <link rel="stylesheet" href="__PUBLIC__/home/css/test.css" />         
+    <script src="__PUBLIC__/home/js/jquery.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+</block>
+<block name="main">
+    <div id="wrap">	
+     		<div id="main">
+	     		<div id="main_left_bg">
+	     			<!-- 仅作占位用，以防止因浮动引起的位置错乱 -->
+	     		</div>
+	     		<div id="main_left">
+
+	     			<div id="main_left_top">
+	     				<a href="#">首页</a>
+					<a href="#">消息</a>
+					<a href="#">收藏</a>
+	     			</div>
+	     			<div class="follow">
+					<a href="#">特别关注</a>
+					<a href="#">手机</a>
+					<a href="#">科技</a>
+					<a href="#">英语</a>
+					<a href="#">大学</a>
+					<a href="#">互联网</a>
+					<a href="#">名人</a>
+				</div>
+				<div class="hr"></div>
+	    		</div>
+
+	    		<!-- 中间一列开始 -->
+	    		<div id="main_center">
+	    			<div class="send_weibo">
+
+	    				<div class="title_area">
+	    					<div class="title_left">
+	    						<p>想说神马就说神马</p>
+	    					</div>
+	    					<div class="title_right">
+	    						<p>还可以输入<span ><b>140</b></span>字</p>
+	    					</div>
+
+	    				</div>
+
+	    				<div class="input">
+	    					<textarea class="w_input" name="" id=""></textarea>
+	    				</div>
+
+	    				<div class="func_area">
+	    					<div class="kind">
+	    						表情,图片,视频,话题
+	    					</div>
+	    					<div class="func">
+	    						<button>发布</button>
+	    					</div>
+	    				</div>
+	    			</div>
+
+	    			<div id="weibo_feed">
+	    				<div class="wb_tab">
+	    					<div class="wb_tab_left">
+	    						<ul>
+	    							<li><a href="#">全部</a></li>
+	    							<li><a href="#">原创</a></li>
+	    							<li><a href="#">图片</a></li>
+	    							<li><a href="#">视频</a></li>
+	    							<li><a href="#">音乐</a></li>
+	    						</ul>
+	    					</div>
+	    					<div class="wb_tab_right">
+	    						<form action="" method="get">
+	    							<input type="text" name="key_word">
+	    						</form>
+	    					</div>
+
+	    				</div>
+	    			</div>
+
+	    			<div class="wb_detail">
+	    				<div class="headpic">
+	    					
+	    				</div>
+	    				<div class="wb_content">
+	    					
+	    				</div>
+	    			</div>
+	    			<div class="wb_bar">
+	    				<ul>
+	    					<li><a href="#">收藏</a></li>
+	    					<li><a href="#">转发</a></li>
+	    					<li><a href="#">评论</a></li>
+	    					<li><a href="#">点赞</a></li>
+	    				</ul>
+	    			</div>
+
+	    			<!-- 点击评论时，显示如下内容 -->
+	    			<div class="wb_feed_repeat">
+	    				<div class="wb_feed_publish">
+	    					<div class="wb_face">
+	    						wb_face
+	    					</div>
+	    					<div class="wb_publish">
+	    						<div class="publish_input">
+	    							<textarea class="w_input" name="" id=""></textarea>
+	    						</div>
+	    						<div class="publish_func">
+	    						<span>as</span>
+	    						<ul>
+	    							<li>
+	    								<label for="">
+	    									<input type="checkbox" name="forward">
+	    									<span>同时转发到我的微博</span>
+	    								</label>
+	    							</li>
+	    							<li>
+	    								<label for="">
+	    									<input type="checkbox" name="forward">
+	    									<span>同时评论给原作者</span>
+	    								</label>
+	    							</li>
+	    						</ul>
+	    						<a href="#">发布</a>
+	    						</div>
+	    					</div>
+	    				</div>
+
+	    				<div class="repeat_list">
+	    					<div class="repeat_tab">
+	    						<ul>
+	    							<li><a href="#">全部</a></li>
+	    							<li><a href="#">热门</a></li>
+	    							<li><a href="#">认证用户</a></li>
+	    							<li><a href="#">关注的人</a></li>
+	    						</ul>
+	    						<span>共199条</span>
+	    					</div>
+	    					<div class="list_box">
+		    					<div class="list_li">
+		    						<div class="repeat_face"></div>
+		    						<div class="repeat_content">
+		    							<div class="repeat_text">
+		    								<a href="">极客视界V</a>：魅族是高举低打，小米是高举高大，性能上应该是差距不大，小米的粉丝还是多一些，当年魅族的粉丝都成了大叔，吸引年轻人应该是魅族营销的一个短板
+		    							</div>
+		    							<div class="repeat_func">
+		    								<span>2分钟前发表</span> 
+		    								<span>点赞</span>
+		    								<a href="#">回复</a>
+		    							</div>
+		    						</div>
+		    						<div class="clear"></div>
+		    					</div>
+
+		    					<div class="list_li">
+		    						<div class="repeat_face"></div>
+		    						<div class="repeat_content">
+		    							<div class="repeat_text">
+		    								<a href="">极客视界V</a>：魅族是高举低打，小米是高举高大，性能上应该是差距不大，小米的粉丝还是多一些，当年魅族的粉丝都成了大叔，吸引年轻人应该是魅族营销的一个短板
+		    							</div>
+		    							<div class="repeat_func">
+		    								<span>2分钟前发表</span> 
+		    								<span>点赞</span>
+		    								<a href="#">回复</a>
+		    							</div>
+		    						</div>
+		    						<div class="clear"></div>
+		    					</div>
+	    					</div>
+	    				</div>
+	    			</div>
+	    			<!-- 点击评论时，显示如上内容 -->
+
+	    			<div class="wb_detail">
+	    				<div class="headpic">
+	    					
+	    				</div>
+	    				<div class="wb_content">
+	    					
+	    				</div>
+	    			</div>
+	    			<div class="wb_bar">
+	    				<ul>
+	    					<li><a href="#">收藏</a></li>
+	    					<li><a href="#">转发</a></li>
+	    					<li><a href="#">评论</a></li>
+	    					<li><a href="#">点赞</a></li>
+	    				</ul>
+	    			</div>
+
+	    			<div class="wb_detail">
+	    				<div class="headpic">
+	    					
+	    				</div>
+	    				<div class="wb_content">
+	    					
+	    				</div>
+	    			</div>
+	    			<div class="wb_bar">
+	    				<ul>
+	    					<li><a href="#">收藏</a></li>
+	    					<li><a href="#">转发</a></li>
+	    					<li><a href="#">评论</a></li>
+	    					<li><a href="#">点赞</a></li>
+	    				</ul>
+	    			</div>
+
+
+	    			<div class="wb_detail">
+	    				<div class="headpic">
+	    					
+	    				</div>
+	    				<div class="wb_content">
+	    					
+	    				</div>
+	    			</div>
+	    			<div class="wb_bar">
+	    				<ul>
+	    					<li><a href="#">收藏</a></li>
+	    					<li><a href="#">转发</a></li>
+	    					<li><a href="#">评论</a></li>
+	    					<li><a href="#">点赞</a></li>
+	    				</ul>
+	    			</div>
+
+	    			<div class="wb_detail">
+	    				<div class="headpic">
+	    					
+	    				</div>
+	    				<div class="wb_content">
+	    					
+	    				</div>
+	    			</div>
+	    			<div class="wb_bar">
+	    				<ul>
+	    					<li><a href="#">收藏</a></li>
+	    					<li><a href="#">转发</a></li>
+	    					<li><a href="#">评论</a></li>
+	    					<li><a href="#">点赞</a></li>
+	    				</ul>
+	    			</div>
+
+	    			<div class="wb_detail">
+	    				<div class="headpic">
+	    					
+	    				</div>
+	    				<div class="wb_content">
+	    					
+	    				</div>
+	    			</div>
+	    			<div class="wb_bar">
+	    				<ul>
+	    					<li><a href="#">收藏</a></li>
+	    					<li><a href="#">转发</a></li>
+	    					<li><a href="#">评论</a></li>
+	    					<li><a href="#">点赞</a></li>
+	    				</ul>
+	    			</div>
+
+	    		</div>
+
+
+
+	    		<div id="main_right">
+	    			<div class="w_person_info">
+	    				<div class="w_person_bg">
+	    					<img src="__PUBLIC__/home/images/laoda.jpg" alt="">
+	    				</div>
+	    				<div class="w_info">
+	    					<div class="name_box">
+	    						<p>牛逼的老大 LV99</p>
+	    					</div>
+	    					<div class="user_info">
+	    						<ul>
+	    							<li><a href="#"><strong>10000</strong><span>关注</span></a></li>
+	    							<li><a href="#"><strong>9900</strong><span>粉丝</span></a></li>
+	    							<li id="li_last"><a href="#"><strong>7999</strong><span>关微博</span></a></li>
+	    							
+	    						</ul>
+	    						<div class="clear"></div>
+	    					</div>
+	    				</div>
+	    			</div>
+
+	    			<div class="interest_person">
+	    				<div class="interest_title">
+	    					<span>可能感兴趣的人</span>
+	    					<span ><a href="#">换一换</a></span>
+	    				</div>
+
+	    				<div class="interest_first">
+	    					<div class="person_headpic"></div>
+	    					<div class="person_name">
+	    						<p>LiTaoV</p>
+	    						<span><a href="#">+关注</a></span>
+	    					</div>
+	    				</div>
+	    				<div class="interest_first">
+	    					<div class="person_headpic"></div>
+	    					<div class="person_name">
+	    						<p>LiShiHaoV</p>
+	    						<span><a href="#">+关注</a></span>
+	    					</div>
+	    				</div>
+	    				<div class="interest_first">
+	    					<div class="person_headpic"></div>
+	    					<div class="person_name">
+	    						<p>XieChaoV</p>
+	    						<span><a href="#">+关注</a></span>
+	    					</div>
+	    				</div>
+	    				<div class="interest_first">
+	    					<div class="person_headpic"></div>
+	    					<div class="person_name">
+	    						<p>LuoCaiYongV</p>
+	    						<span><a href="#">+关注</a></span>
+	    					</div>
+	    				</div>
+	    			
+	    			</div>
+
+	    			<div class="hot_talk">
+	    				<div class="interest_title">
+	    					<span>热门话题</span>
+	    					<span ><a href="#">换一换</a></span>
+	    				</div>
+	    				<div class="hot_talking">
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    				</div>
+	    				<div id="more">
+	    					<p><a href="#">查看更多</a></p>
+	    				</div>
+
+	    			</div>
+	    		</div>
+	    		<div class="clear"></div> 
+	    	</div><!-- main结束标签 -->
+
+     		<div class="clear"></div> 
+    </div>
+
+</block>
+
+<block name="script">
+<script>
+	$(".wb_bar li").eq(2).click(function(){
+		$(".wb_feed_repeat").toggle(600);
+	})
+</script>
+</block>
+
+

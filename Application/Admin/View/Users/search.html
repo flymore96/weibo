@@ -1,0 +1,50 @@
+<extend name="Public:index" />
+<block name="title">搜索用户</block>
+<block name="content">
+    <ul class="list-unstyled spaced2">
+        <li>
+            <i class="icon-circle green"></i>
+            搜索用户
+        </li>
+    </ul>
+    <div class="hr hr-24"></div>
+    <div class="col-xs-12">
+        <form action="__CONTROLLER__/lists" class="form-horizontal" method="get" role="form">
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户账号: </label>
+
+                <div class="col-sm-9">
+                    <input type="text" id="form-field-1" name="keyword" class="col-xs-10 col-sm-5" placeholder="输入要搜索的用户,支持模糊搜索" />
+                </div>
+            </div>
+
+            <div class="space-4"></div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户分组: </label>
+
+                <div class="col-sm-9">
+                    <select style="width:344px" class="form-control" id="form-field-select-1" name="type">
+                        <option value="0">所有用户</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="space-4"></div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+
+                <div class="col-sm-9">
+                    <button class="btn btn-primary">搜索用户</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</block>
+<block name="script">
+    <script>
+        $(".nav-list>li:eq(2)").addClass('active');
+        $(".nav-list>li:eq(2)").addClass('open');
+    </script>
+</block>

@@ -1,0 +1,145 @@
+<div class="group_info">
+	<p >
+		<span  onclick="del({$Think.get.id},this)" class="glyphicon glyphicon-trash"></span>
+	</p>
+</div>
+
+<div class="this_group">
+<ul>
+<foreach name="everygroup" item="vo">
+	<li>
+		<div class="member_wrap">
+			<div class="headpic">
+				<img src="__PUBLIC__/home/uploads/headpic/{$vo.headpic}" >
+			</div>
+			<div class="member_info">
+				<a href="javascript:">{$vo.username}</a>
+				<span ><a onclick="cancel({$vo.id},this)" href="javascript:;">&nbsp;-取消关注</a></span>
+				<p>
+					作家，思想家....
+				</p>
+				<p>
+					个性签名就是这么个性！
+				</p>
+				<div class="info_button">
+					<a onclick="coming({$vo.followid},this)" href="javascript:">请选择分组<span class="glyphicon glyphicon-chevron-down"></span></a>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</li>
+</foreach>
+</ul>
+</div>
+
+<div class="set_group">
+	<p class="first_p">
+		..::::..请选择合适的分组..:::..
+	</p>
+	<ul>
+		<foreach name="groupnameg" item="voo">
+			<li><input type="radio" name="group" value="{$voo.id}"/>{$voo.groupname}</li>
+		</foreach>
+	</ul>
+	<p>
+		<a class="aconfirm">确定</a>
+	</p>			
+</div>	
+<script>
+	// 传递 followid 值
+	function coming(id,obj){
+		$(".set_group").toggle();
+		$.get("__CONTROLLER__/updateGroup/followid/"+id);
+		
+		$(".set_group").css({"left":($(obj).offset().left)+"px","top":($(obj).offset().top+40)+"px"});
+	};
+
+	function del(gid,obj){
+		 if (!confirm("确认要删除此分组？")) { 
+            	window.event.returnValue = false; 
+        	}else{ 
+			$.get("__CONTROLLER__/del/gid/"+gid,function(data){
+				if (data ==1) {
+					alert('删除成功');
+				}else if(data ==0){
+					alert("删除分组失败");
+				}else if(data == 2){
+					alert("删除组并解除成员成功");
+				}
+				window.location.href="__CONTROLLER__/group";
+			});
+			
+		}
+	}
+
+	// 取消关注
+	function cancel(id,obj){
+		if($(obj).text() == "已取消关注"){
+			alert("您不是已经取消了吗？");
+		}else{
+			$.get("__CONTROLLER__/cancel/followid/"+id,function(data){
+			if (data == 1) {
+				alert("取消成功");
+				$(obj).text("已取消关注");
+			}else if(data == 0){
+				alert("取消失败");
+			}
+		});
+		}
+	}
+
+	// 发送分组id
+	$(".aconfirm").click(function(){
+		var vid = $(".set_group input:checked").val();
+		$.get("__CONTROLLER__/updateGroup/id/"+vid,function(data){
+			if (data ==1) {
+				alert("分组成功");
+				$('.set_group').hide();
+				$(".group_right").load("__CONTROLLER__/thisGroup/id/{$Think.get.id}");					
+			}else if(data ==0){
+				alert("选择其它分组");
+			};
+		});
+	});	
+
+	// 发送分组id
+	// function liclick(id,obj){
+	// 	$(".aconfirm").click(function(){
+	// 		$.get("__CONTROLLER__/updateGroup/id/"+id,function(data){
+	// 			if (data ==1) {
+	// 				$('.set_group').hide();
+	// 				alert("分组成功");
+	// 				$(".group_right").load("__CONTROLLER__/thisGroup/id/{$Think.get.id}");					
+	// 			}else if(data ==0){
+	// 				alert("选择其它分组");
+	// 			};
+	// 		});
+	// 	});	
+	// }
+
+	// -----------------------拖动效果---------------------
+	$(".set_group").mousedown(function(e){
+		$(this).css("cursor","move");
+		//DIV在页面的位置
+		var offset = $(this).offset();  
+		//获得鼠标指针离DIV元素左边界的距离
+		var x = e.pageX - offset.left;  
+		//获得鼠标指针离DIV元素上边界的距离
+		var y = e.pageY - offset.top;
+
+		//绑定鼠标的移动事件，因为光标在DIV元素外面也要有效果，所以要用doucment的事件，而不用DIV元素的事件  
+		$(document).bind("mousemove",function(ev){
+			$(".set_group").stop();
+			var _x = ev.pageX - x;//获得X轴方向移动的值  
+                 var _y = ev.pageY - y;//获得Y轴方向移动的值  
+			$(".set_group").animate({left:_x+"px",top:_y+"px"},1);  
+		})
+	});
+
+	$(document).mouseup(function(){
+		$(".set_group").css("cursor","default");  
+            $(this).unbind("mousemove");  
+	})
+	// ----------------------拖动效果结束----------------------
+
+</script>

@@ -1,0 +1,83 @@
+/* 
+* @Author: lishihao
+* @Date:   2014-11-19 10:00
+* @Last Modified by:   lishihao
+* @Last Modified time: 2014-11-21 17:20:19
+* 用户听众css样式文件
+*/
+.listen_main{
+	width:950px;
+	height:1200px;
+	border-radius:13px;
+	background:white;
+	margin:60px auto 30px;
+	}
+.listen_left{
+	width:200px;
+	height:100%;
+	float:left;
+	border-top-left-radius:13px;
+	border-bottom-left-radius:13px;
+	background:#F9F9F9;
+}
+.list_left{
+	margin:38px 0 0 28px;
+}
+.left_li{
+	
+	font-size:16px;
+	margin-top:15px;	
+	border-bottom:1px dashed #D9D9D9;
+}
+.li_font{
+	color:#006A92;
+	margin:0px 0 10px 8px;
+	line-height:23px;
+	position:absolute;
+}
+.listen_right{
+	width:718px;
+	height:1150px;
+	float:right;
+	padding:25px 0 20px 27px;
+	border-top-right-radius:13px;
+}
+.right_head{
+	height:60px;
+	width:680px;
+	border-bottom:2px solid #EAEAEA;
+}
+.right_head_font{
+	font-size:16px;
+	font-weight:800;
+}
+.right_main{
+	
+}
+.main_box{
+	height:78px;
+	width:207px;
+	float:left;
+	border:1px solid #DDDDDD;
+	margin:35px 0 20px 12px;
+	padding:6px 0 0 3px;
+}
+.box_msg{
+	font-size:14px;
+	position:absolute;
+	margin:-2px 0 0 5px;
+}
+.p_msg{
+	margin:60px 0 0 99px;
+	position:absolute;
+}
+.listen_bottom{
+	height:30px;
+	margin:1050px 0 0 300px;
+}
+.main_box:hover{
+	border:1px solid #3FBFFF;
+}
+.li_font_a{
+	margin-left:28px;
+}

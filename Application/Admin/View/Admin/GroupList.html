@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
+        <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/home/js/jquery.js"></script>   
+    </head>
+    <body>
+        <ol class="breadcrumb">
+          <li class="active">角色管理</li>
+          <li><a href="__CONTROLLER__/AddGroup">添加角色</a></li>
+        </ol>
+    </body>
+    <table class="table table-hover">
+        <tr class="success">
+            <th>ID</th>
+            <th>角色名称</th>
+            <th>状态</th>
+            <th>管理操作</th>
+        </tr>
+        <foreach name="data" item="row">
+            <tr>
+                <td>{$row.id}</td>
+                <td>{$row.title}</td>
+                <td>
+                <if condition="$row.status eq 1 ">
+                <span class="glyphicon glyphicon-ok"></span>   
+                <else /> <span class="glyphicon glyphicon-remove"></span>
+                </if>
+                </td>
+                <td><a href="__CONTROLLER__/GroupEdit/id/{$row.id}">修改</a>|<a href="__CONTROLLER__/GroupDel/id/{$row.id}" onclick="return confirm('你确定要删除吗?');">删除</a></td>
+            </tr>
+        </foreach>  
+    </table>
+</html>

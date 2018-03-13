@@ -1,0 +1,387 @@
+<extend name="Public:header" />
+<block name="title">首页</block>
+<block name="link">
+    <link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="__PUBLIC__/home/css/index.css" />         
+    <script src="__PUBLIC__/home/js/jquery.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/home/js/index.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/home/css/letter.css" />
+</block>
+<block name="main">
+    <div id="wrap">
+    		<a id="top"></a>	
+     		<div id="main">
+	     		<div id="main_left_bg">
+	     			<!-- 仅作占位用，以防止因浮动引起的位置错乱 -->
+	     		</div>
+	     		<div id="main_left">
+	     			<div id="main_left_top">
+	     				<a href="__APP__">首页</a>
+					<a class="letter" href="javascript:void(0)">消息</a>
+					<a  class="keeplist" href="javascript:void(0)">收藏</a>
+	     			</div>
+	     			<div class="follow">
+	     			<!-- 以下代码多，是因为用了bootstrap提供的字体图标 -->
+	     				<a class="a_click" href="javascript:"><span class="glyphicon glyphicon-th-list" style="font-size:12px"></span>&nbsp;全部分组信息</a>
+					<div class="hr"></div>
+
+	     				<foreach name="group" item="group">
+	     					<a  class="groupcontent" href="javascript:;" onclick="groupcontent({$group.id},this)"><span class="glyphicon glyphicon-tint" style="font-size:12px"></span>&nbsp;{$group.groupname}</a>
+	     				</foreach>
+
+					<!-- <a href="javascript:"><span class="glyphicon glyphicon-tint" style="font-size:12px"></span>&nbsp;手机</a> -->
+					
+				</div>
+
+	    		</div>
+
+	    		<!-- 遮罩层 -->
+	    		<div id="mask" class="mask"></div>
+			<!-- 遮罩层结束 -->
+
+	    		<!-- 中间一列开始 -->
+	    		<div id="main_center">
+	    			<div class="send_weibo">
+	    				<div class="title_area">
+	    					<div class="title_left">
+	    						<p>想说神马就说神马</p>
+	    					</div>
+	    					<div class="title_right">
+	    						<p>还可以输入&nbsp;<span ><b id="rest">140</b></span>&nbsp;字</p>
+	    					</div>
+	    				</div>
+					
+					<form action="__APP__/Home/Content/add" enctype="multipart/form-data" method="post">
+		    				<div class="input">
+		    					<textarea class="w_input" name="content" id=""></textarea>
+		    				</div>
+
+		    				<div class="func_area">
+		    					<div class="kind">
+		    						<a href="#"><em class="glyphicon glyphicon-eye-open ficon_face"></em>表情</a>
+		    						<a href="#"><em class="glyphicon glyphicon-picture ficon_pic"></em>图片</a>
+		    						<a href="#"><em class="glyphicon glyphicon-film ficon_film"></em>视频</a>
+		    						<a href="#"><em class="glyphicon glyphicon-align-center ficon_talk"></em>话题</a>	
+		    					</div>
+		    					<div class="func">
+		    						<button>发布</button>
+		    					</div>
+		    				</div>
+	    				</form>
+	    			</div>
+
+	    			<div id="weibo_feed">
+	    				<div class="wb_tab">
+	    					<div class="wb_tab_left">
+	    						<ul>
+	    							<li><a href="#">全部</a></li>
+	    							<li><a href="#">原创</a></li>
+	    							<li><a href="#">图片</a></li>
+	    							<li><a href="#">视频</a></li>
+	    							<li><a href="#">音乐</a></li>
+	    						</ul>
+	    					</div>
+	    					<div class="wb_tab_right">
+	    						<form action="" method="get">
+	    							<input type="text" name="key_word" placeholder="搜你所想"><button><span>search</span></button>
+	    						</form>
+	    					</div>
+	    				</div>
+	    			</div>
+
+				<div class="wball">
+					<foreach name="contents" item="content"> 
+			    			<div class="wb_detail">
+			    				<div class="headpic">
+			    					<img src="__PUBLIC__/home/uploads/headpic/{$content.headpic}" >		
+			    				</div>
+			    				<div class="wb_content">
+			    					<div class="wb_info_top">
+			    						<a href="__APP__/Home/Zone/index/id/{$content.uid}">{$content.username} </a>
+			    					</div>
+			    					<div class="wb_content_text">
+			    						
+			    						<if condition="$content.turnid neq 0 ">
+										{$content.content}<br>&nbsp;&nbsp;&nbsp;&nbsp;
+			    						<a href="__APP__/Home/Zone/index/id/{$content.turn.uid}">@{$content.turn.username}:</a>
+			    						<b>{$content.turn.content}</b><else />{$content.content} </if>
+			    					</div>
+			    					<!-- <div class="other_wb">转发微博占位</div> -->
+			    					<div class="wb_content_bottom">
+			    						{$content.posttime|date="Y-m-d H:i:s",###}
+			    					</div>
+			    					
+			    				</div>
+			    				<div class="clear"></div>
+			    			</div>
+			    			<div class="wb_bar">
+			    				<ul>
+			    					<li class="keep" onclick="keep({$content.id},this)"><a href="javascript:;"><if condition="$content.iskeep eq 1 ">取消收藏<else /> 收藏</if></a></li>
+			    					<li class="zhuanfa"><a href="javascript:;">转发</a></li>
+			    					<li class="pinglun">
+			    						<a onclick="loads({$content.id},this)" href="javascript:;">评论</a>
+			    					</li>
+			    					<li class="praise" onclick="praise({$content.id},this)"><a href="javascript:;"><span class="glyphicon glyphicon-thumbs-up zan"></span><em>{$content.num}</em></a></li>
+			    				</ul>
+			    			</div>
+
+					<!-- 点击转发时出现如下内容 -->
+						<div class="wb_move">
+							<div class="move_title">
+								<span>转发微博</span>
+								<span class="close">×</span>
+							</div>
+							<div class="move_content">
+								<form action="__APP__/Home/Content/turn" method="post">
+									<div class="fill_content">
+										<textarea name="content" id=""></textarea>
+										<input type="hidden" name="id" value="{$content.id}"/>
+									</div>
+									<div class="fill_func">
+										<!-- <a href="javascript:">转发微博</a> -->
+										<button>转发</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					<!-- 点击转发时出现如上内容 -->
+		    			
+		    			<!-- 点击评论时，显示如下内容 -->
+		    			<div class="wb_feed_repeat">
+		    				<div class="wb_feed_publish">
+		    					<div class="wb_face">
+		    						<img src="__PUBLIC__/home/uploads/headpic/{$Think.session.user.headpic}"/>
+		    					</div>
+		    					<div class="wb_publish">
+		    					<!-- <form  method="post"> -->
+		    						<div class="publish_input">
+		    							<textarea class="reply_textarea" name="content" id=""></textarea>
+		    						</div>
+		    						<input class="contentid" type="hidden" name="id" value="{$content.id}"/>
+		    						<div class="publish_func">
+			    						<span>as</span>
+			    						<ul>
+			    							<li>
+			    								<label for="">
+			    									<input type="checkbox" name="forward">
+			    									<span>同时转发到我的微博</span>
+			    								</label>
+			    							</li>
+			    							<li>
+			    								<label for="">
+			    									<input type="checkbox" name="forward">
+			    									<span>同时评论给原作者</span>
+			    								</label>
+			    							</li>
+			    						</ul>
+			    						<button class="reply">发布</button>
+			    					</div>
+		    						<!-- </form> -->
+		    					</div>
+		    				</div>
+
+		    				<div class="repeat_list">
+		    					<div class="repeat_tab">
+		    						<!-- <ul>
+		    							<li><a href="#">全部</a></li>
+		    							<li><a href="#">热门</a></li>
+		    							<li><a href="#">认证用户</a></li>
+		    							<li><a href="#">关注的人</a></li>
+		    						</ul>
+		    						<span>共199条</span> -->
+		    					</div>
+		    					<div class="list_box">
+		    						<!-- 
+		    							通过Ajax把每条微博的评论加载过来
+		    							<div class="list_li"></div> 
+		    						-->
+		    					</div>
+		    				</div>
+		    			</div>
+		    		</foreach> 
+	    			    			<!-- 点击评论时，显示如上内容 -->
+
+	    			<div class="page">
+	    				{$page}
+<!-- 	    			<a href="javascript:">上一页</a>
+	    				<span class="page_list">第2页</span>
+	    				<a href="javascript:">下一页</a> -->
+	    			</div>
+	    		</div>
+			</div>
+
+			<!--最右边一列，第三列开始 -->
+	    		<div id="main_right">
+	    			<div class="w_person_info">
+	    				<div class="w_person_bg">
+	    					<a href="__APP__/Home/Zone"><img src="__PUBLIC__/home/uploads/headpic/{$Think.session.user.headpic}"/></a>
+	    				</div>
+	    				<div class="w_info">
+	    					<div class="name_box">
+	    						<p>{$Think.session.user.username} LV99</p>
+	    					</div>
+	    					<div class="user_info">
+	    						<ul>
+	    							<li><a href="__APP__/Home/Group/group"><strong>{$follows}</strong><span>关注</span></a></li>
+	    							<li><a href="__APP__/Home/Listen"><strong>{$fans}</strong><span>粉丝</span></a></li>
+	    							<li id="li_last"><a href="__APP__/Home/Zone"><strong>{$conts}</strong><span>微博</span></a></li>
+	    							
+	    						</ul>
+	    						<div class="clear"></div>
+	    					</div>
+	    				</div>
+	    			</div>
+
+	    			<div class="interest_person">
+	    				<!-- 通过Ajax  -->
+	    			</div>
+
+	    			<div class="hot_talk">
+	    				<div id="hot" class="interest_title">
+	    					<span>热门话题</span>
+	    					<a href="#"><span class="glyphicon glyphicon-repeat"></span>&nbsp;换一换</a>
+	    				</div>
+	    				<div class="hot_talking">
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    					<div class="talking_detail">
+	    						<span>#好热的话题啊#</span>
+	    						<span>12万</span>
+	    					</div>
+	    				</div>
+	    				<div id="more">
+	    					<p><a href="#">查看更多</a></p>
+	    				</div>
+	    			</div>
+	    			<div class="hot_talk">
+	    				<div id="hot" class="interest_title">
+	    					<span>好站推荐</span>
+	    					<a href="javascript"><span class="glyphicon glyphicon-repeat"></span>&nbsp;换一换</a>
+	    				</div>
+	    				<div class="hot_talking">
+	    					<foreach name="friendlink" item="friendlink">
+	    						<div class="clear"></div>
+		    					<div class="friend_link">
+		    						<a href="{$friendlink.linkurl}"><img src="__PUBLIC__/home/uploads/static/{$friendlink.linklogo}" ></a>
+		    					</div>
+	    					</foreach>
+	    					
+	    				</div>
+	    				<div id="more">
+	    					<p><a href="#">查看更多</a></p>
+	    				</div>
+	    			</div>
+
+	    		</div>
+	    		<!-- 设置锚点，返回顶部 -->
+	    		<div class="back_top">
+	    			<a id="back" href="javascript:">
+	    				<span class="glyphicon glyphicon-circle-arrow-up"></span>
+	    			</a>
+	    		</div> 
+
+	    		<!-- <div id="load">
+	    			a啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+	    		</div> -->
+
+	    		<div class="clear"></div>
+	    	</div><!-- main结束标签 -->
+		
+     		<div class="clear"></div> 
+    </div><!-- wrap结束标签 -->
+</block>
+
+<block name="script">
+<script>
+	$("#main_left a").click(function(){
+		$("#main_left a").removeClass("a_click");
+		$(this).addClass("a_click");
+	});
+	$(".w_input").keyup(function(){
+		var len = $(this).val().length;			
+		if(len > 139){	
+			$(this).val($(this).val().substring(0, 140));
+			// $(this).attr("disabled",true);
+		}
+		var num = 140 -len;
+		if(num < 0){
+			num = 0;
+		}
+		$("#rest").text(num);
+	});
+
+	$(".interest_person").load("__APP__/Home/Recommend/recommend");
+	
+	function loads(id,obj){
+		$.get("__APP__/Home/Content/reply/id/"+id,function(data){
+			$(obj).parents('.wb_bar').next().next().children(':eq(1)').children(':eq(1)').html(data);
+		});
+	}
+	
+	$('.reply').click(function(){
+		$.post('__APP__/Home/Content/add2',{'content':$('.reply_textarea').val(),'id':$('.contentid').val()},function(data){
+			if(data == 'success'){
+				alert('评论成功！');
+				$('.list_box').load('__APP__/Home/Content/reply/id/'+$('.contentid').val(),function(){
+
+				});
+			}
+		});
+	})
+	//ajax获取点赞数
+	function praise(id,obj){
+		$.get('__APP__/Home/Content/praise/id/'+id,function(data){
+			$(obj).children().children(':eq(1)').html(data);
+		});
+	}
+
+	//ajax获取是否收藏
+	function keep(id,obj){
+		$.get('__APP__/Home/Content/keep/id/'+id,function(data){
+			
+				$(obj).children().html(data);
+			
+		});
+	}
+
+	$('.letter').click(function(){
+		$('#main_center').load('__APP__/Home/Letter/letter');
+	});
+
+	$('.keeplist').click(function(){
+		$('.wball').load('__APP__/Home/Content/keeplist');
+	});
+
+	function groupcontent(id,obj){
+	
+			$('.wball').load('__APP__/Home/Content/groupcontent/id/'+id);
+		
+	}
+	$(".friend_link:odd").css("float","right");
+</script>
+</block>
+
+

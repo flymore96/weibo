@@ -1,0 +1,14 @@
+<foreach name="reply" item="row">
+<div class="repcontent">
+    <div class="headpic">
+        <img src="__PUBLIC__/home/images/bg.jpg" alt="" />
+    </div>
+    <div class="text">
+        <a href="__CONTROLLER__/index/id/{$row.userid}" target="_blank">{$row.username}</a>:
+        {$row.content}
+    </div>
+    <a href="javascript:void(0)" onclick="replydel({$row.id},{$row.uid},{$row.replyid},this)" style="float:right">删除</a>
+    <span style="float:right">|</span>
+    <a href="#" style="float:right">回复</a>
+</div>
+</foreach>

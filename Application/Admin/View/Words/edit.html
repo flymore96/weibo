@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
+        <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/home/js/jquery.js"></script>
+        <style>
+            img{
+                width:70px;
+                height:70px;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width:660px;height:auto">
+            <form target="_parent" action="__CONTROLLER__/update" method="post">
+                <table class="table table-hover">
+                    <tr>
+                        <td style="width:30%">敏感词</td>
+                        <td style="width:70%">
+                            <input type="text" name="badwords" value="{$edits.badwords}" />
+                            <input type="hidden" name="id" value="{$edits.id}" />
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td style="width:30%">替换词</td>
+                        <td style="width:70%"><input type="text" value="{$edits.goodwords}" name="goodwords" /></td>
+                    </tr>
+                              
+                    <tr>
+                        <td style="width:30%"></td>
+                        <td style="width:70%">
+                            <button type="submit" class="btn btn-success">保存</button>
+                        </td>
+                    </tr>
+            </table>
+            </form>
+        </div>
+    </body>
+</html>

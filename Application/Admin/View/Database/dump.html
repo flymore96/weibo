@@ -1,0 +1,73 @@
+<extend name="Public:index" />
+<block name="title">数据库备份</block>
+<block name="content">
+    <ul class="list-unstyled spaced2">
+        <li>
+            <i class="icon-circle green"></i>
+            数据备份类型
+        </li>
+    </ul>
+    <div class="hr hr-24"></div>
+    <form action="__CONTROLLER__/dumpsave" method="post">
+    <div class="radio">
+        <label>
+            <input name="type" value="1" type="radio" id="dump_all" checked="checked" class="ace">
+            <span class="lbl"> 备份全部表</span>
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input name="type" value="2" type="radio" id="dump" class="ace">
+            <span class="lbl"> 自定义备份</span>
+        </label>
+    </div>
+    
+    <div id="dump_box" style="display:none;width:100%;">
+    <ul style="list-style:none">
+    <foreach name="data" item="row">
+        <li style="float:left">
+            <div class="checkbox">
+                <label>
+                    <input  type="checkbox" class="ace" name="table[]" value="{$row}" >
+                    <span class="lbl">{$row}</span>
+                </label>
+            </div>
+        </li>
+    </foreach>
+    </ul>
+    </div>
+
+    <ul class="list-unstyled spaced2" style="clear:both">
+        <li>
+            <i class="icon-circle green"></i>
+            备份设置
+        </li>
+    </ul>
+    <div class="hr hr-24"></div>
+    <div class="col-xs-12">
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 备份文件名: </label>
+
+        <div class="col-sm-9">
+            <input type="text" id="form-field-1" value="{$filename}" name="filename" class="col-xs-10 col-sm-5" /><span style="font-size:18px">.sql</span>
+        </div>
+    </div>
+    
+ 
+        <button class="btn btn-warning btn-lg" style="margin-right:900px;margin-top:30px">确定备份</button>
+    
+    </div>
+    </form>
+</block>
+<block name="script">
+    <script>
+        $(".nav-list>li:eq(5)").addClass('active');
+        $(".nav-list>li:eq(5)").addClass('open');
+        $('#dump_all').click(function(){
+            $('#dump_box').css("display","none");
+        });
+        $('#dump').click(function(){
+            $('#dump_box').css("display","block");
+        });
+    </script>
+</block>

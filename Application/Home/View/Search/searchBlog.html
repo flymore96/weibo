@@ -1,0 +1,57 @@
+<foreach name="list" item="vi">
+		<!--遍历搜索出微博区开始-->
+			<div class="msgbox">
+				<img class="set_headpic" src="__PUBLIC__/home/uploads/headpic/{$vi.headpic}" width="60" height="60">
+				<br>
+				<div class="set_listen">
+					<a href="javascript:;" onclick="set_listen({$vi.uid},this)">
+						<in name="vi.uid" value="$listen"><b>已</b>&nbsp;关注
+						<else/><b>+</b>&nbsp;关注
+						</in>
+					</a>
+				</div>
+				<div class="set_msg">
+					<span class="set_msg_font">用户：{$vi.username}</span>
+					<br>
+					<span class="set_msg_blog">微博内容：{$vi.content}</span>
+				</div>
+				<div class="set_msg_bottom">
+					<img src="__PUBLIC__/home/images/search_blog.png">&nbsp;
+					<span>{$vi.posttime|date="Y-m-d H:i:s", ###}</span>
+				</div>
+			</div>
+			</foreach>
+					<div class="search_page">{$page}</div>
+			<script>
+			$(".num").attr("href","javascript:void(0)");
+			$(".next").attr("href","javascript:void(0)");
+			$(".prev").attr("href","javascript:void(0)");
+			$(".num").click(function(){
+				var num = $(this).text();
+				$(".tt").load('__CONTROLLER__/searchBlog/p/'+num);
+					
+			});
+			$(".next").click(function(){
+				var num = {$Think.get.p} +1;
+				$(".tt").load('__CONTROLLER__/searchBlog/p/'+num);
+					
+			});
+			$(".prev").click(function(){    
+				var num = {$Think.get.p} -1;
+				$(".tt").load('__CONTROLLER__/searchBlog/p/'+num);
+					
+			});
+			//判断是否已关注 
+			function set_listen(id,obj){
+				$.get("__CONTROLLER__/follows/uid/"+id,function(data){
+					if(data == 0){
+						alert("你早已经关注了，不用在关注");
+						$(obj).children("b").html("已");
+					}else if(data == 1){
+						alert("关注成功");
+						$(obj).children("b").html("已");
+						}
+				});
+				
+			}
+			</script>

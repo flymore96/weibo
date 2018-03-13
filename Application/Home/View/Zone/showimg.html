@@ -1,0 +1,45 @@
+<div class="photomian">
+    <div class="photo_content">
+        <div class="photo_btn">
+            <button class="upload_btn" onclick="fh()">返回</button>
+        </div>
+        <div class="photo_cover">
+            <ul>
+                <foreach name="data" item="row">
+                <li><a href="javascript:void(0)" onclick="cimg(this)">
+                <img src="__PUBLIC__/home/uploads/ablum/{$row.img}" alt="" style="height: 137px;width: 146px;" />
+                <span style="display:block;">{$row.photo_name}</span>
+                </a>
+                <div style="position:absolute;bottom:0px">
+                <a href="javascript:void(0)" onclick="delimg({$row.id},this)">删除</a>
+                </div>
+                </li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="photo_img" style="display:none">
+    <img class="show" src="" alt="" />
+</div>
+<script>
+    function fh(){
+        $("#content").load("__CONTROLLER__/photo/id/{$Think.get.id}");
+    }
+    function cimg(obj){
+        var img = $(obj).children('img').attr('src');
+        $('.photo_img').show(300);
+        $('.show').attr('src',img);
+    }
+    function delimg(id,obj){
+        $.get("__CONTROLLER__/delimg/id/"+id,function(data){
+            if(data == 'success'){
+               $(obj).parents('li').hide(300); 
+            }
+        });
+        
+    }
+    $('.show').click(function(){
+        $('.photo_img').hide();
+    });
+</script>

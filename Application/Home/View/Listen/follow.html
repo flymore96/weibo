@@ -1,0 +1,48 @@
+
+	<div class="right_head">
+		<br>
+		<span class="right_head_font">我关注：{$count}人</span>
+	</div>
+	<div class="right_main">
+		<!--遍历出听众-->
+		<foreach name="list" item="vi">
+			<div class="main_box">
+				<img src="__PUBLIC__/home/uploads/headpic/{$vi.headpic}" width="68" height="70">
+				<span class="box_msg">{$vi.username}<br>
+					QQ:{$vi.qq}<br>
+					家乡:{$vi.province}{$vi.city}<br>
+				</span>
+				<a href="javascript:;" onclick="del({$vi.followid},this)" class="p_msg"><p>取消</p></a>
+			</div>
+		</foreach>
+	</div>
+	<div class="listen_bottom">	
+				{$page}
+			</div>
+	<script>
+	$(".num").attr("href","javascript:void(0)");
+	$(".next").attr("href","javascript:void(0)");
+	$(".prev").attr("href","javascript:void(0)");
+	$(".num").click(function(){
+	var num = $(this).text();
+	$(".listen_right").load('__CONTROLLER__/follow/p/'+num);
+	});
+	$(".next").click(function(){
+	var num = {$Think.get.p} +1;
+	$(".listen_right").load('__CONTROLLER__/follow/p/'+num);
+	});
+	$(".prev").click(function(){
+	var num = {$Think.get.p} -1;
+	$(".listen_right").load('__CONTROLLER__/follow/p/'+num);
+	});
+	function del(id,obj){
+			$.get("__CONTROLLER__/dele/followid/"+id,function(data){
+				if(data==1){
+					alert("取消关注成功")
+					$(obj).children("p").html("已取消");
+				}else if(data==0){
+					alert("取消关注失败")
+				}
+			})
+		};
+	</script>

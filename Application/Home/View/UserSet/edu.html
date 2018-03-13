@@ -1,0 +1,159 @@
+<span class="head-font"><input type="checkbox" value="0" checked>公开我的教育信息</span>
+<div class="edu-head">
+	<span>你尚未添加任何学校信息!</span>
+	<br>
+	<span>完整的学校信息可以让你和校友之间更迅速地找到彼此，增加你的关注度。</span>
+</div>
+
+<div class="edu-main">
+	<span>添加新的教育信息</span><span class="right-font">最多可添加10条教育信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	<form action="__CONTROLLER__/dataEdu" method="post">
+		<table border="0" cellspacing="28" cellpadding="0">
+			<tr>
+				<th>学历：</th>
+				<td>
+					<select name="schoolType">
+						<option value="1">硕士</option>
+						<option value="2">博士</option>
+						<option value="3" selected>大学</option>
+						<option value="4">高中</option>
+						<option value="5">初中</option>
+						<option value="6">小学</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th><span class="red">*</span>入学年份：</th>
+				<td>
+					<select name="schoolNear">
+						<option value="2010">2010</option>
+						<option value="2009">2009</option>
+						<option value="2008">2008</option>
+						<option value="2007">2007</option>
+						<option value="2006">2006</option>
+						<option value="2005">2005</option>
+						<option value="2004">2004</option>
+						<option value="2003">2003</option>
+						<option value="2002">2002</option>
+						<option value="2001">2001</option>
+						<option value="2000">2000</option>
+					</select>
+				</td>
+			</tr>
+			
+				<tr>
+					<th colspan="2">
+						<!--此处加入选择加入选择全国学校的jquery的插件-->
+						<span class="red">*</span>
+						学校名称：&nbsp;&nbsp;<input type="text" name="school" id="school-name" value="请选择大学" onclick="pop()">
+					</th>
+						<div id="choose-box-wrapper">
+						<div id="choose-box">
+						<div id="choose-box-title">
+							<span>选择学校</span>
+						</div>
+						<div id="choose-a-province">
+						</div>
+						<div id="choose-a-school">
+						</div>
+						<div id="choose-box-bottom">
+						<input type="botton" onclick="hide()" value="关闭" />
+						</div>
+						</div>
+						</div>
+				
+				<!--选择学校插件结束-->
+			</tr>
+			<tr>
+				<th>院系：</th>
+				<td><input type="text" id="d" name=""></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td><input type="image" id="submit-edu" src="__PUBLIC__/home/images/save.jpg" value="">
+					<a href="#"><img src="__PUBLIC__/home/images/reset.jpg"></a>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+  <script type="text/javascript">
+  //利用ajax传输数据
+	$("#submit-edu").click(function(){
+		var val= $("#d").val();
+		$.post('__CONTROLLER__/edu',{"zzz":val})
+	
+	});
+	
+	//弹出窗口
+	function pop(){
+		//将窗口居中
+		makeCenter();
+
+		//初始化省份列表
+		initProvince();
+
+		//默认情况下, 给第一个省份添加choosen样式
+		$('[province-id="1"]').addClass('choosen');
+
+		//初始化大学列表
+		initSchool(1);
+	}
+	//隐藏窗口
+	function hide()
+	{
+		$('#choose-box-wrapper').css("display","none");
+	}
+
+	function initProvince()
+	{
+		//原先的省份列表清空
+		$('#choose-a-province').html('');
+		for(i=0;i<schoolList.length;i++)
+		{
+			$('#choose-a-province').append('<a class="province-item" province-id="'+schoolList[i].id+'">'+schoolList[i].name+'</a>');
+		}
+		//添加省份列表项的click事件
+		$('.province-item').bind('click', function(){
+				var item=$(this);
+				var province = item.attr('province-id');
+				var choosenItem = item.parent().find('.choosen');
+				if(choosenItem)
+					$(choosenItem).removeClass('choosen');
+				item.addClass('choosen');
+				//更新大学列表
+				initSchool(province);
+			}
+		);
+	}
+
+	function initSchool(provinceID)
+	{
+		//原先的学校列表清空
+		$('#choose-a-school').html('');
+		var schools = schoolList[provinceID-1].school;
+		for(i=0;i<schools.length;i++)
+		{
+			$('#choose-a-school').append('<a class="school-item" school-id="'+schools[i].id+'">'+schools[i].name+'</a>');
+		}
+		//添加大学列表项的click事件
+		$('.school-item').bind('click', function(){
+				var item=$(this);
+				var school = item.attr('school-id');
+				//更新选择大学文本框中的值
+				$('#school-name').val(item.text());
+				//关闭弹窗
+				hide();
+			}
+		);
+	}
+
+	function makeCenter()
+	{
+		$('#choose-box-wrapper').css("display","block");
+		$('#choose-box-wrapper').css("position","absolute");
+		$('#choose-box-wrapper').css("top", Math.max(0, (($(window).height() - $('#choose-box-wrapper').outerHeight()) / 2) + $(window).scrollTop()) + "px");
+		$('#choose-box-wrapper').css("left", Math.max(0, (($(window).width() - $('#choose-box-wrapper').outerWidth()) / 2) + $(window).scrollLeft()) + "px");
+	}
+
+  </script>

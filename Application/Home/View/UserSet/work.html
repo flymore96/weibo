@@ -1,0 +1,59 @@
+	<span class="head-font"><input type="checkbox" value="0" checked>公开我的教育信息</span>
+	<div class="edu-head">
+		<span>你尚未添加任何学校信息!</span>
+		<br>
+		<span>完整的学校信息可以让你和校友之间更迅速地找到彼此，增加你的关注度。</span>
+	</div>
+
+	<div class="edu-main">
+		<span>添加新的教育信息</span><span class="right-font">最多可添加10条教育信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<form action="" method="post">
+			<table border="0" cellspacing="28" cellpadding="0">
+				<tr>
+					<th><span class="red">*</span>工作时间：</th>
+					<td>
+						<input type="text" name="" value="" size="4">
+					</td>
+					<td>
+						至
+					</td>
+					<td>
+						<input type="text" name="" value="" size="4">
+					</td>
+				</tr>
+				<tr>
+					<th><span class="red">*</span>工作单位：</th>
+					<td colspan='3'><input type="text" name="" value="" id="work"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>部门或职位：</th>
+					<td colspan="3"><input type="text" name=""></td>
+					<td><span class="prompt">十字以内，请准确填写</span></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td colspan="3"><input type="image" src="__PUBLIC__/home/images/save.jpg" value="">
+						<a href="#"><img src="__PUBLIC__/home/images/reset.jpg"></a>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<script>
+		var msg="";
+		$("#work").blur(function(){
+			
+			$(this).next().remove();
+			checkWork(this);
+			$("td:eq(4)").html(msg);
+		});
+		function checkWork(obj){
+		
+			if($(obj).val().length ==0){
+				msg="<span class='red'>这里一定要填写</span>";
+			}else{
+				msg="<span class='prompt'>15字以内请准确填写</span>"
+			}
+		}
+	</script>

@@ -1,0 +1,24 @@
+<foreach name="noread" item="noread">
+    <div class="message_all">
+        <img  class="headpic1" src="__PUBLIC__/home/uploads/headpic/{$noread.headpic}" alt="" width="50" height="50"/>
+        <div class="message_content">
+            <a class="username1" href="__APP__/Home/Zone/index/id/{$noread.userid}">{$noread.username}</a><br />
+            <span>{$noread.content}</span><br />
+            <span>{$noread.sendtime|date="Y-m-d H:i:s",###}</span>
+        </div>
+        <button class="delmessage" onclick="delletter({$noread.id},this)">删除</button>
+    </div>
+
+</foreach>
+<script>
+    function delletter(id,obj){
+        $.get("__APP__/Home/Letter/delletter/id/"+id,function(data){
+            if(data == 'success'){
+                 $(obj).parent().hide(1000);
+                // alert('删除成功');
+            }else{
+                alert('删除失败');
+            }
+        });
+    }
+</script>

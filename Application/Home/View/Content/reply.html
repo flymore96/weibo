@@ -1,0 +1,47 @@
+<foreach name="replylist" item="reply">
+	<div class="list_li">
+		<div class="repeat_face">
+			<img src="__PUBLIC__/home/uploads/headpic/{$reply.headpic}" />
+		</div>
+
+		<div class="repeat_content">
+			<div class="repeat_text">
+				<a href="__APP__/Home/Zone/index/id/{$reply.uid}">{$reply.username}V</a>：{$reply.content}
+			</div>
+			<div class="repeat_func">
+				<span>{$reply.posttime|date="Y-m-d H:i:s",###}</span> 
+				<span>点赞</span>
+				<a class="reply_link"  href="javascript:;">回复</a>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<div class="reply_box">
+		<form action="__APP__/Home/Content/add3" method="post">
+			<div class="reply_content">
+			   	<textarea class="reply_input" name="content" id=""></textarea>
+			   	<input type="hidden" name="id" value="{$reply.id}"/>
+			</div>
+			<button>reply</button>
+		</form>
+	</div>
+</foreach>
+	<script>
+	$(function(){
+		$(".reply_link").click(function(){
+			$(this).parents(".list_li").next().toggle();
+			// if($(this).parents(".list_li").next().is(":visible")){ 
+			// 	$(this).parents(".list_li").next().hide();
+			// }else{ 
+			// 	$(this).parents(".list_li").next().show();
+			// }
+		});
+
+		// function reply(id,obj){
+		// 	$.get("__APP__/Home/Content/add3/id/"+id,function(){});
+		// }
+		
+	})
+	</script>
+	

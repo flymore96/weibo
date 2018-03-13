@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
+        <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/home/js/jquery.js"></script>
+        <style>
+            img{
+                width:70px;
+                height:70px;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width:660px;height:auto">
+            <form target="_parent" action="__CONTROLLER__/update" method="post" enctype="multipart/form-data">
+                <table class="table table-hover">
+                    <tr>
+                        <td style="width:30%">链接名</td>
+                        <td style="width:70%">
+                            <input type="text" name="linkname" value="{$edits.linkname}" />
+                            <input type="hidden" name="id" value="{$edits.id}" />
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td style="width:30%">URL</td>
+                        <td style="width:70%"><input type="url" value="{$edits.linkurl}" name="linkurl" /></td>
+                    </tr>
+
+                    <tr>
+                        <td style="width:30%">logo</td>
+                        <td style="width:70%"><img src="__PUBLIC__/Home/uploads/static/{$edits.linklogo}"><input type="file" name="linklogo" ></td>
+                    </tr>
+                              
+                    <tr>
+                        <td style="width:30%"></td>
+                        <td style="width:70%">
+                            <button type="submit" class="btn btn-success">确认修改</button>
+                        </td>
+                    </tr>
+            </table>
+            </form>
+        </div>
+    </body>
+</html>

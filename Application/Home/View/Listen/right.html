@@ -1,0 +1,26 @@
+	
+			<div class="right_head">
+				<br>
+				<span class="right_head_font">我的粉丝：{$count}人</span>
+			</div>
+			<div class="right_main">
+				<foreach name="list" item="vi">
+					<!--遍历出听众-->
+					<div class="main_box">
+						<img src="__PUBLIC__/home/uploads/headpic/{$vi.headpic}" width="68" height="70">
+						<span class="box_msg">{$vi.username}<br>
+							QQ:{$vi.qq}<br>
+							家乡:{$vi.province}{$vi.city}<br>
+							<a href="javascript:;"  onclick="fans({$vi.fansid},this)">
+								<in name="vi.fansid" value="$listen"><img class="img_src" src="__PUBLIC__/home/images/alisten.png" width="63" height="24">
+								<else/><img class="img_src" src="__PUBLIC__/home/images/listen.png" width="63" height="24">
+								</in>
+							</a>
+						</span>
+					</div>
+				</foreach>
+			</div>
+			<div class="listen_bottom">	
+				{$page}
+			</div>
+		

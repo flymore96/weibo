@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
+        <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/home/js/jquery.js"></script>
+        <style>
+            img{
+                width:70px;
+                height:70px;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width:660px;height:auto">
+        <form action="__CONTROLLER__/update" method="post">
+            <table class="table table-hover">
+                <tr>
+                    <td style="width:30%">用户名</td>
+                    <td style="width:70%">{$row.username}
+                        <input type="hidden" name="id" value="{$row.id}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:30%">头像</td>
+                    <td style="width:70%"><img src="__PUBLIC__/home/uploads/headpic/{$row.headpic}" alt="" /></td>
+                </tr>
+                <tr>
+                    <td style="width:30%">密码</td>
+                    <td style="width:70%"><input type="password" name="userpwd" /></td>
+                </tr>
+                <tr>
+                    <td style="width:30%">邮箱</td>
+                    <td style="width:70%"><input type="email" value="{$row.email}" name="email" /></td>
+                </tr>
+                <tr>
+                    <td style="width:30%">积分</td>
+                    <td style="width:70%"><input type="text" value="{$row.money}" name="money" /></td>
+                </tr>
+                <tr>
+                    <td style="width:30%">性别</td>
+                    <td style="width:70%">
+                        <select name="sex" >
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                            <option value="0">保密</option>
+                            <script>
+                            <switch name="row.sex">
+                                <case value="1">$("option:eq(0)").attr('selected','selected');</case>
+                                <case value="2">$("option:eq(1)").attr('selected','selected');</case>
+                                <default />$("option:eq(2)").attr('selected','selected');
+                            </switch>
+                            </script>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:30%">QQ</td>
+                    <td style="width:70%">
+                        <input type="text" name="qq" value="{$row.qq}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:30%">学校</td>
+                    <td style="width:70%"><input type="text" value="{$row.edus}" name="edus" /></td>
+                </tr>
+                <tr>
+                    <td style="width:30%"></td>
+                    <td style="width:70%">
+                        <button type="submit" class="btn btn-success">保存</button>
+                    </td>
+                </tr>
+            </table>
+            </form>
+        </div>
+    </body>
+</html>

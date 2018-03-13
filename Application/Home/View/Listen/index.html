@@ -1,0 +1,79 @@
+<extend name="Public:header" />
+<block name="title">我的微博圈</block>
+<block name="link">
+
+	<link rel="stylesheet" href="__PUBLIC__/home/css/listen.css">
+	
+</block>
+<block name="main">
+	<div class="listen_main">
+		<!--left导航-->
+		<div class="listen_left">
+			<div class="list_left">
+				<ul>
+					<li class="left_li">
+						<a href="javascript:;"><img src="__PUBLIC__/home/images/listen_logo.png"><span class="li_font">我的粉丝</span></a>
+					</li>
+					<li class="left_li">
+						<a href="javascript:;"><img src="__PUBLIC__/home/images/listens_logo.png"><span class="li_font">我的关注</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--right内容-->
+		<div class="listen_right">
+			
+			<div class="right_head">
+				<br>
+				<span class="right_head_font">我的粉丝：{$count}人</span>
+			</div>
+			<div class="right_main">
+				<foreach name="list" item="vi">
+					<!--遍历出听众-->
+					<div class="main_box">
+						<img src="__PUBLIC__/home/uploads/headpic/{$vi.headpic}" width="68" height="70">
+						<span class="box_msg">{$vi.username}<br>
+							QQ:{$vi.qq}<br>
+							家乡:{$vi.province}{$vi.city}<br>
+							<a href="javascript:;"  onclick="fans({$vi.fansid},this)">
+								<in name="vi.fansid" value="$listen"><img class="img_src" src="__PUBLIC__/home/images/alisten.png" width="63" height="24">
+								<else/><img class="img_src" src="__PUBLIC__/home/images/listen.png" width="63" height="24">
+								</in>
+							</a>
+						</span>
+					</div>
+				</foreach>
+			</div>
+			<div class="listen_bottom">	
+				{$page}
+			</div>
+		</div>
+	
+	</div>
+	
+</block>
+<block name="script">
+	<script>
+		$(".left_li:eq(0)").click(function(){
+			$(".listen_right").load("__CONTROLLER__/right")
+		});
+		$(".left_li:eq(1)").click(function(){
+			$(".listen_right").load("__CONTROLLER__/follow")
+		});
+		function fans(id,obj){
+			$.get("__CONTROLLER__/add/fansid/"+id,function(data){
+				if(data==1){
+					alert("你已经关注过了，不需要在关注了")
+					$(obj).children(".img_src").attr("src","__PUBLIC__/Home/images/alisten.png")
+				}else if(data==0){
+					alert("关注成功")
+					$(obj).children(".img_src").attr("src","__PUBLIC__/Home/images/alisten.png")
+				}
+			})
+		};
+		$(".li_font").click(function(){
+			$(".li_font").removeClass("li_font_a")
+			$(this).addClass("li_font_a")
+		})
+	</script>
+</block>

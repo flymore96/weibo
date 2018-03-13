@@ -1,0 +1,71 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
+        <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/home/js/jquery.js"></script>
+        <style>
+            img{
+                width:70px;
+                height:70px;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width:660px;height:auto">
+            <table class="table table-hover">
+                <tr>
+                    <td style="width:30%">用户名</td>
+                    <td style="width:70%">{$row.username}</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">头像</td>
+                    <td style="width:70%"><img src="__PUBLIC__/home/uploads/headpic/{$row.headpic}" alt="" /></td>
+                </tr>
+                <tr>
+                    <td style="width:30%">邮箱</td>
+                    <td style="width:70%">{$row.email}</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">等级</td>
+                    <td style="width:70%">{$row.level}</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">积分</td>
+                    <td style="width:70%">{$row.money}</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">性别</td>
+                    <td style="width:70%">
+                        <switch name="row.sex">
+                            <case value="1">男</case>
+                            <case value="2">女</case>
+                            <default />保密
+                        </switch>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:30%">QQ</td>
+                    <td style="width:70%">
+                        <if condition="$row.qq eq 0 ">
+                            无
+                            <else />{$row.qq}
+                        </if>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:30%">学校</td>
+                    <td style="width:70%">{$row.edus}</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">注册Ip</td>
+                    <td style="width:70%">{$row.regip}</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">住址</td>
+                    <td style="width:70%">{$row.province} {$row.city} {$row.county}</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

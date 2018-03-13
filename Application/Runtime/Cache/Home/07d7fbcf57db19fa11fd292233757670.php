@@ -1,0 +1,168 @@
+<?php if (!defined('THINK_PATH')) exit();?><div class="cleft">
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <a href="#"><p><?php echo ($follownum); ?></p><span>关注</span></a>
+                </td>
+                <td class="line"></td>
+                <td>
+                    <a href="#"><p><?php echo ($fanswnum); ?></p><span>粉丝</span></a>
+                </td>
+                <td class="line"></td>
+                <td>
+                    <a href="#"><p><?php echo ($contentnum); ?></p><span>微博</span></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <div><span class="icon"><span>LV.0</span></span></div>
+        <div>
+            <div><p>个人资料完成度<span>20%</span></p></div>
+            <div><div style="width:20%"></div></div>
+        </div>
+        <div>
+            <a href="#"><span>编辑个人资料&gt;</span></a>
+        </div>
+    </div>
+    <div>
+        <p><a href="#">相册</a></p>
+        <div class="img">
+            <a href=""><img src="/Public/home/images/mm.jpg" alt="" width="190" height="190" /></a>
+            <a href=""><img src="/Public/home/images/mm.jpg" alt="" width="92" height="93" /></a>
+            <a href=""><img src="/Public/home/images/mm.jpg" alt="" width="92" height="95" /></a>
+        </div>
+        <div class="imgbottom">
+            <a href="#"><span>查看更多&gt;</span></a>
+        </div>
+    </div>
+</div>
+<div class="cright">
+    <div class="title">
+        <div><a href="">微博</a></div>
+        <div>
+            <form action="" method="get">
+                <input type="text" name="keywords" placeholder="搜索我的微博" />
+                <input type="submit" />
+            </form>
+        </div>
+    </div>
+    <?php if(is_array($content)): foreach($content as $key=>$row): ?><div class="content">
+        <div class="middle">
+            <div class="left" style="min-height:130px">
+                <b><?php echo ($row["content"]); ?></b>
+            </div>
+            
+            <div class="right" style="<?php echo ($style); ?>">
+                <a class="men" href="javascript:void(0)"><span class="caret"></span></a>
+                <div class="layer_menu_list" style="display:none" node-type="fl_menu_right">
+                    <ul>
+                        <li><a href="javascript:void(0)" onclick="contentdel(<?php echo ($row["id"]); ?>,this)">删除</a></li>
+                        <li><a href="#">置顶</a></li>
+                        <li><a href="#">加标签</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    <span style="display:block;clear:both;color:#ccc"><?php echo (date("Y年m月d日 H:i",$row["posttime"])); ?></span>
+    </div>
+    <div class="bottom">
+
+        <ul>
+            <li><a href="javascript:void(0)"><i>阅读</i> 188&nbsp;&nbsp;<span>推广</span></a></li>
+            <li><a href="javascript:void(0)" class="movebtn">转发</a></li>
+            <li><a class="replybtn" href="javascript:void(0)" onclick="getreply(<?php echo ($row["id"]); ?>,this)">评论</a></li>
+            <li class="praise">
+                <a href="javascript:void(0)">
+                    <span class="ico"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="reply" style="display:none">
+        <div class="p_input">
+            <textarea></textarea>
+        </div>
+        <div class="repbtn">
+            <div class="move"><input type="checkbox" value="1" /><span>同时转发到我的微博</span></div>
+            <button onclick="replysend(<?php echo ($row["id"]); ?>,this)">评论</button>
+        </div>
+        <div id="getreply">
+            
+        </div>
+
+
+
+    </div><?php endforeach; endif; ?>
+    <div class="wb_layer" style="display:none">
+        <div class="layer_title">
+            <div><span>转发微博</span></div>
+            <div><a class="close" href="javascript:void(0)"><span>X&nbsp;</span></a></div>
+        </div>
+        <div class="textarea">
+            <textarea name="" id="" cols="30" rows="10" placeholder="输入转播理由"></textarea>
+        </div>
+        <div class="move_btn">
+            
+            <button>转发</button>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+            $(".replybtn").click(function(){
+                    //$(".reply").slideToggle();
+                $(this).parents('.bottom').next().slideToggle();
+            });
+            $(".movebtn").click(function(){
+                $('.wb_layer').show(300);
+                $('#cover').css('height',$(document).height());
+                $('#cover').css('width',$(document).width());
+                $('#cover').show();
+            });
+            $(".close").click(function(){
+                $('.wb_layer').hide(300);
+                $('#cover').hide();
+            });
+            $('.men').click(function(){
+                $(this).next().slideToggle(300);
+
+            });
+
+        function getreply(id,obj){
+            var o = $(obj).parents('.bottom').next().children('#getreply');
+            o.load("/index.php/Home/Zone/getreply/id/"+id);
+        }
+
+        function replysend(id,obj){
+            var content = $(obj).parents('.repbtn').prev().children().eq(0).val();
+            $.post("/index.php/Home/Zone/replysend/id/"+id,{"content":content},function(data){
+                if(data == "success"){
+                    $(obj).parents('.repbtn').next().load("/index.php/Home/Zone/getreply/id/"+id);
+                }
+            });
+        }
+
+        function contentdel(id,obj){
+            $.get("/index.php/Home/Zone/contentdel/id/"+id,function(data){
+                if(data == "success"){
+                    // $("#content").load("/index.php/Home/Zone/home/id/<?php echo ($_GET['id']); ?>");
+                  $(obj).parents(".content").hide(1000);
+                  $(obj).parents(".content").next().hide(1000);
+                  $(obj).parents(".content").next().next().hide(1000)
+                
+                }
+            });
+        }
+
+        function replydel(id,uid,replyid,obj){
+            $.get("/index.php/Home/Zone/replydel/id/"+id+"/uid/"+uid+"/replyid/"+replyid,function(data){
+                if(data == "success"){
+                    $(obj).parents("#getreply").load("/index.php/Home/Zone/getreply/id/"+replyid);
+                }
+            });
+        }
+
+    </script>

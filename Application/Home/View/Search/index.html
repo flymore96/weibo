@@ -1,0 +1,147 @@
+<extend name="Public:header" />
+<block name="title">广播</block>
+<block name="link">
+	<link href="__PUBLIC__/admin/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="__PUBLIC__/home/css/search.css">
+</block>
+<block name="main">
+	<div class="search_main">
+		<div class="search_head">
+			<form action="__URL__" method="post">
+				<div class="search_blue">
+					<img src="__PUBLIC__/home/images/em.jpg" class="search_em">
+					<span class="search_font_left">&nbsp;&nbsp;&nbsp;广播</span>
+					&nbsp;&nbsp;&nbsp;丨&nbsp;&nbsp;&nbsp;<a href="__URL__/person" class="asa"><span class="search_font_right">用户</span></a><br>
+					<input type="text" name="keywords" class="searchs" placeholder="请输入广播关键字" value="{$Think.post.keywords}">
+					<img class="search_search" src="__PUBLIC__/home/images/search.jpg" height="27">
+				</div>
+			</form>
+		</div>
+		<!--遍历出的搜索内容区-->
+		<div class="search_main_left">
+			<div class="search_main_left_font_head">
+				推荐微博
+			</div>
+		<div class="tt">
+			<!--遍历搜索出微博区开始-->
+		</div>
+		</div>
+		
+		<div class="search_main_right">
+			<div class="right_main">
+			<!--个人信息板块-->
+				<div class="each_head">
+					<div class="pic">
+						<span><img class="set_headpic" src="__PUBLIC__/home/uploads/headpic/{$Think.session.user.headpic}" width="88" height="88"></span>
+					</div>
+					<div class="aa">
+							<a href="" class="name_color">{$Think.session.user.username}</a>
+							<img src="__PUBLIC__/Home/images/levels.png" height="15">
+					</div>
+					<span class="mood">
+						从今天开始，绘制专属你的心情曲线
+					</span><br />
+					<span>
+						<a href="" class="name_color">写心情</a>
+					</span>
+				</div>
+						
+				<div class="search_listen">
+					<div class="search_listen_div">
+						<span class="search_listen_div_font">&nbsp;{$conts}</span><br>
+						<span>微博</span>
+					</div>
+					<div class="search_listen_div">
+						<span class="search_listen_div_font">&nbsp;0</span><br>
+						<span>收藏</span>
+					</div>
+					<div class="search_listen_div">
+						<span class="search_listen_div_font">&nbsp;{$follows}</span><br>
+						<span>关注</span>
+					</div>
+					<div class="search_listen_divs">
+						<span class="search_listen_div_font">{$fans}</span><br>
+						<span>粉丝</span>
+					</div>
+					<div class="font_a">
+						——————————————————————
+					</div>
+				</div>
+				
+				<!--个人信息板块结束-->
+				<div class="recommends">
+					<div class="recommend">
+						<div>推荐收听<span class="switch"><a href="javascript:;" id="recommend_change">[换一换]</a></span></div>
+					<!--遍历推荐收听人员-->
+					<foreach name="res" item="vo">
+						<div class="each">
+							<div class="pic">
+								<span><img class="set_headpic" src="__PUBLIC__/home/uploads/headpic/{$vo.headpic}" width="68" height="68"></span>
+							</div>
+							<div class="each_listen">
+								<a href="" class="name_color">{$vo.username}</a>
+								<img src="__PUBLIC__/Home/images/recommend.jpg" height="15">
+								<a href="##" class="span_none" onclick="re_change()">不感兴趣</a>
+							</div>
+							<span class="mood">
+								{$vo.sign}
+							</span><br />
+								<a href="javascript:;" onclick="lister_({$vo.id},this)"><img class="img" src="__PUBLIC__/Home/images/listen.png"></a>
+					</div>
+					</foreach>
+					<!--遍历结束-->
+						<br />
+						<a href="##" onclick="re_change()">更多>></a>
+					</div>
+				</div>
+				<div class="font_">
+					---------------------------------------------------------
+				</div>
+			</div>
+		</div>
+	</div><br />
+	
+</block>
+<block name="script">
+<script>
+	$(".tt").load('__CONTROLLER__/searchBlog')
+	$(".recommend").hover(function(){
+		$(".switch").css('display','block')
+	},function(){
+		$(".switch").css('display','none')
+	});
+	$(".each").hover(function(){
+		$(this).children(".each_listen").children(".span_none").css('display','block')
+	},function(){
+		$(".span_none").css('display','none')
+	});
+	$("#recommend_change").click(function(){
+		$(".recommends").load("__CONTROLLER__/personRecommend");
+	});
+	$(".search_search").click(function(){
+		var val=$(".searchs").val();
+		$(".tt").load('__CONTROLLER__/searchBlog',{"keywords":val})
+		});
+	//$(".asa").click(function(){
+	//	var val = $(".searchs").val();
+	//	//alert(val)
+	//	$.post('__CONTROLLER__/person',{"vals":val}
+	//	});
+	function lister_(id,obj){
+		$.get("__CONTROLLER__/follow/id/"+id,function(data){
+			if(data == 0){
+				alert("你早已经关注了，不用在关注");
+				$(obj).children(".img").attr("src","__PUBLIC__/Home/images/alisten.png");
+			}else if(data == 1){
+				alert("关注成功");
+				$(obj).children(".img").attr("src","__PUBLIC__/Home/images/alisten.png");
+			}
+		});
+	}
+	//不感兴趣更多点击事件
+	function re_change(){
+		$(".recommends").load("__CONTROLLER__/personRecommend");
+	}
+	
+</script>
+</block>

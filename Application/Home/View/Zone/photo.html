@@ -1,0 +1,82 @@
+<div class="photomian">
+    <div class="photo_content">
+        <div class="photo_btn">
+            <button class="upload_btn">上传照片</button>
+            <button class="create_photo">创建相册</button>
+        </div>
+        <div class="photo_cover">
+            <ul>
+                <foreach name="photo" item="row">
+                <li><a href="javascript:void(0)" onclick="showimg({$row.id},this,'{$row.photo_name}')">
+                <img src="__PUBLIC__/home/uploads/ablum/{$row.img}" alt="" style="height: 137px;width: 146px;" />
+                <span style="display:block;">{$row.photo_name}</span>
+                </a>
+                <div style="position:absolute;bottom:0px">
+                <a href="javascript:void(0)" onclick="delphoto({$row.id},this)">删除</a>| <a href="javascript:void(0)" onclick="editphoto({$row.id},this)">编辑</a>
+                </div>
+                </li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="create_photo_form" style="display:none">
+    <div><span style="float:left;line-height:30px;color:#333;text-indent:10px" class="p_title">创建相册</span><span style="float:right;line-height:30px;font-weight:800;margin-right:10px"><a href="javascript:void(0)" class="create_close" style="color:#333">X</a></span></div>
+    <div>
+        <iframe class="src" src="__CONTROLLER__/photo_create" frameborder="0"></iframe>
+    </div>
+</div>
+<div class="upload_photo_form" style="display:none">
+    <div><span style="float:left;line-height:30px;color:#333;text-indent:10px">照片上传</span><span style="float:right;line-height:30px;font-weight:800;margin-right:10px"><a href="javascript:void(0)" class="create_close" style="color:#333">X</a></span></div>
+    <div>
+        <iframe src="__CONTROLLER__/photo_upload" frameborder="0"></iframe>
+    </div>
+</div>
+<script>
+    $('.upload_btn').click(function(){
+        $('.upload_photo_form').show();
+        $('#cover').css('height',$(document).height());
+        $('#cover').css('width',$(document).width());
+        $('#cover').show();
+    });
+    $('.create_photo').click(function(){
+        $('.create_photo_form').show();
+        $('#cover').css('height',$(document).height());
+        $('#cover').css('width',$(document).width());
+        $('#cover').show();
+    });
+    $('.create_close').click(function(){
+        $('.create_photo_form').hide();
+        $('.upload_photo_form').hide();
+        $('#cover').hide();
+        $("#content").load("__CONTROLLER__/photo/id/{$Think.get.id}");
+    });
+
+    function delphoto(id,obj){
+        $.get("__CONTROLLER__/delphoto/id/"+id,function(data){
+            if(data == '110'){
+                alert('非法操作！');
+            }
+            if(data == 'success'){
+                $(obj).parents('li').hide(300);
+            }else{
+                alert('删除失败！');
+            }
+        })
+    }
+
+    function editphoto(id,obj){
+        $('.p_title').text('编辑相册');
+        $('.create_photo_form').show();
+        $('#cover').css('height',$(document).height());
+        $('#cover').css('width',$(document).width());
+        $('#cover').show();
+        $('.src').attr('src',"__CONTROLLER__/editphoto/id/"+id);
+    }
+    function showimg(id,obj,name){
+
+        
+        $("#content").load("__CONTROLLER__/showimg/id/"+id);
+    }
+    
+</script>

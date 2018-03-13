@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width:200px;
+			height:15px;
+			background:pink;
+			border:1px solid green;
+		}
+	</style>
+</head>
+<body>
+	
+</body>
+</html>
+<?php
+	$m = M('follow');
+	$uid = session('user')['id'];
+	$ids = $m->where("fansid=$uid")->select('id');
+	var_dump($ids);

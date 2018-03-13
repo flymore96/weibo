@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
+        <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/home/js/jquery.js"></script>
+        <style>
+            .menu>a{
+                color:#004499;
+                text-decoration: none;
+                font-size: 12px;
+                font-family: '微软雅黑';
+            }
+            span{
+                font-size: 12px;
+                color:#ccc;
+            }
+            table{
+                font-size: 12px;
+                width:100%;
+                height:100%;
+                color:#444;
+                margin-top:10px; 
+            }
+            td{
+                border-bottom: 1px solid #eee;
+            }
+            .glyphicon-ok{
+                color:#95D825;
+            }
+            .glyphicon-remove{
+                color:red;
+            }
+
+        </style>
+    </head>
+    <body>
+        <!-- <div class="menu">
+            <a href="__CONTROLLER__/GroupList">角色管理</a>
+            <span>|</span>
+            <a href="__CONTROLLER__/AddGroup">添加角色</a>
+        </div> -->
+        <ol class="breadcrumb">
+          <li><a href="__CONTROLLER__/GroupList">管理员列表</a></li>
+          <li class="active">添加管理员</li>
+        </ol>
+        <form action="__CONTROLLER__/AdminSave" method="post">
+            <table class="table table-hover">
+                <tr>
+                    <td>用户名</td>
+                    <td><input class="username" name="username" type="text" required />
+                    <span class="glyphicon"></span><span class="usermsg"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>密码</td>
+                    <td><input class="password" type="password" name="password" />
+                    <span class="glyphicon"></span><span class="pwdmsg"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>确认密码</td>
+                    <td><input class="repwd" type="password" name="repwd" />
+                    <span class="glyphicon"></span><span class="repwdmsg"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>所属角色</td>
+                    <td>
+                        <select name="gid" id="">
+                            <foreach name="data" item="row">
+                                <option value="{$row.id}">{$row.title}</option>
+                            </foreach>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="添加" /></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+    <script>
+        var ChkUname = false;
+        var ChkPwd = false;
+        var ChkRepwd = false;
+        function CheckUname(){
+            var val = $('.username').val();
+            $.get('__CONTROLLER__/ajax_check/username/'+val,function(data){
+                if(data == "error"){
+                    ChkUname = false;
+                }else{
+                    ChkUname = true;
+                }
+            });
+            return ChkUname;
+        }   
+        function CheckPassword(){
+            var val = $('.password').val();
+            if(val == ''){
+                ChkPwd = false;
+            }else{
+                ChkPwd = true;
+            }
+            return ChkPwd;
+        }
+
+        function CheckRepwd(){
+            var repwd = $(".repwd").val();
+            var pwd = $('.password').val();
+            if(repwd == pwd){
+                ChkRepwd = true;
+            }else{
+                ChkRepwd = false;
+            }
+            return ChkRepwd;
+        }
+        $('.username').blur(function(){
+            if(CheckUname()){
+                $(this).next().attr('class','glyphicon glyphicon-ok');
+                $('.usermsg').text("用户名可用");
+            }else{
+                $(this).next().attr('class','glyphicon glyphicon-remove');
+                $('.usermsg').text("用户名不可用");
+            }
+        });
+
+        $('.password').blur(function(){
+            if(CheckPassword()){
+                $(this).next().attr('class','glyphicon glyphicon-ok');
+                $('.pwdmsg').text("密码可用");
+            }else{
+                $(this).next().attr('class','glyphicon glyphicon-remove');
+                $('.pwdmsg').text("密码不能为空");
+            }
+        });
+
+        $(".repwd").blur(function(){
+            if(CheckRepwd()){
+                $(this).next().attr('class','glyphicon glyphicon-ok');
+                $(".repwdmsg").text("输入正确");
+            }else{
+                $(this).next().attr('class','glyphicon glyphicon-remove');
+                $(".repwdmsg").text("两次密码不一致");
+            }
+        });
+        $("form").submit(function(){
+            CheckUname();
+            CheckPassword();
+            CheckRepwd();
+            if(ChkUname && ChkPwd && ChkRepwd){
+                return true;
+            }else{
+                return false;
+            }
+        });
+    </script>
+</html>

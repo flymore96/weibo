@@ -1,0 +1,193 @@
+<empty name="Think.session.user">
+    <script type="text/javascript">location="__APP__/Home/Index/login"</script>
+</empty>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title><block name="title"></block>_{$Think.session.config.title}</title>
+        <link rel="stylesheet" href="__PUBLIC__/home/css/header.css" /> 
+        <meta name="keywords" content="{$Think.session.config.keywords}">
+        <meta name="description" content="{$Think.session.config.description}">
+        <script src="__PUBLIC__/home/js/jquery.js"></script>
+        <block name="link">
+        
+        </block>
+		
+    </head>
+    <body style="background:#89E3FC url(__PUBLIC__/home/images/bg_{$Think.session.user.skin}) center top no-repeat fixed">
+        <header>
+            <nav>
+                <div>
+                    <div class="navleft">
+                        <!-- 导航左边start -->
+                        <ul>
+                            <li class="logoimg"><a href="__APP__"><img src="__PUBLIC__/home/uploads/static/{$Think.session.config.logo}" alt="" width="124" height="33" /></a></li>
+                            <li class="active"><a href="__APP__">首页</a></li>
+                            <li><a href="#">爆新鲜</a></li>
+                            <li><a href="#">微频道</a></li>
+                            <li><a href="#">找人</a></li>
+                        </ul>
+                        <!-- 导航左边end -->
+                    </div>
+                    <div class="navright">
+                        <!-- 导航右边start -->
+                        <div class="islogin">
+                         <!-- {// 登陆时让他显示 }  -->
+                            <ul>
+                                <li><a href="#" title="任务"><span class="a"></span></a></li>
+                                <li><a href="#" title="提到我的"><span class="b"></span></a></li>
+                                <li><a href="#" title="私信"><span class="c"></span></a></li>
+                                <li><a href="__APP__/Home/Listen" title="听众"><span class="d"></span></a></li>
+                                <li><a href="#" title="通知"><span class="e"></span></a></li>
+                                <li>
+                                        <a class="navuser" href="__APP__/Home/Zone/index/id/{$Think.session.user.id}" title="user">{$Think.session.user.username}&nbsp;<em></em></a>
+                                        <!-- 用户名下拉菜单 -->
+                                        <ul class="menu">
+                                            <li><a href="__APP__/Home/UserSet">设置</a></li>
+                                            <li><a href="javascript:;" class="skin">换肤</a></li>
+                                            <li><a href="">会员</a></li>
+                                            <li><a href="">我的时光轴</a></li>
+                                            <li><a href="">帮助</a></li>
+                                            <li><a href="__APP__/Home/Index/logout">退出</a></li>
+                                        </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- 头部搜索框start -->
+                        <div class="search">
+                            <form action="__APP__/Home/Search" method="post">
+                                <input type="text" name="keywords" placeholder="搜广播/用户"/>
+                                <input type="submit" />
+                            </form>
+                        </div>
+                        <!-- 头部搜索框end -->
+                        <!-- 导航右边stop -->
+                    </div>
+                </div>
+            </nav>
+        </header>
+    <!--换肤隐藏块-->
+    <div class="skin_div">
+    	<div class="skin_div_head">
+    	       <span class="skin_font">换肤设置</span>
+    	       <img class="skin_worng" src="__PUBLIC__/home/images/wrong.png">
+    	</div>	
+    	<div class="skin_main">
+            	<img class="skin_img" src="__PUBLIC__/home/images/bg_1.jpg">
+            	<span>夏威夷海滩</span>
+            	<img class="skin_img" src="__PUBLIC__/home/images/bg_2.jpg">
+            	<span>LOVE YOU</span>
+            	<img class="skin_img" src="__PUBLIC__/home/images/bg_3.jpg">
+            	<span>金黄麦田</span>		
+            	<img class="skin_img" src="__PUBLIC__/home/images/bg_4.jpg">
+            	<span>粉色浪漫</span>		
+            	<img class="skin_img" src="__PUBLIC__/home/images/bg_5.jpg">
+            	<span>水墨山水</span>		
+            	<img class="skin_img" src="__PUBLIC__/home/images/bg_6.jpg">
+            	<span>技术总监专用</span>	
+            	<img class="skin_img" src="__PUBLIC__/home/images/bg_7.jpg">
+            	<span>桂花飘香</span>		
+            	<img class="skin_img" src="__PUBLIC__/home/images/bg_8.jpg">
+            	<span>我们的夏天天</span>	
+    	</div>
+    	<div class="skin_bottom">
+    		<span class="skin_red">*</span>
+    		<span class="skin_font">&nbsp;&nbsp;点击小图片就可以一起愉快的换肤了  V.V</span>
+    	</div>
+    	
+    </div>
+    <!--换肤结束-->
+        <block name="main"></block>
+
+        <!-- <div class="friendlink">      
+            <div class="fdword">
+                <a href="#">魅族</a>
+                <a href="#">魅族</a>
+                <a href="#">魅族</a>
+                <a href="#">魅族</a>
+                <a href="#">魅族</a>
+                <a href="#">魅族</a>      
+            </div>
+        
+            <div class="fdpic">
+                <a href="#"><img src="__PUBLIC__/home/uploads/static/yuanlogo.png" /></a>
+                <a href="#"><img src="__PUBLIC__/home/uploads/static/logo2.png" /></a>
+                <a href="#"><img src="__PUBLIC__/home/uploads/static/start.png" /></a>
+                <a href="#"><img src="__PUBLIC__/home/uploads/static/weixin.png" /></a>
+                <a href="#"><img src="__PUBLIC__/home/uploads/static/greenlogo.png" /></a>
+                <a href="#"><img src="__PUBLIC__/home/uploads/static/milogo.png" /></a>
+            </div
+        </div> -->
+        <footer>
+            <div>
+                <a href="#" target="_blank">腾讯网</a>
+                |
+                <a href="#" target="_blank">网站导航</a>
+                |
+                <a href="#" target="_blank">认证服务</a>
+                |
+                <a href="#" target="_blank" boss="footer_weiboVip">微博会员</a>
+                |
+                <a href="#" target="_blank" boss="footer_adtqqcom">企业服务</a>
+                |
+                <a href="#" target="_blank">开放平台</a>
+                |
+                <a href="#" target="_blank">腾讯客服</a>
+                |
+                <a href="#">意见反馈</a>
+                
+            </div>
+            <div>Copyright © 1998 - 2014 Tencent. All Rights Reserved<a href="#">{$Think.session.config.icpno}</a></div>
+        </footer>
+		
+       
+    </body>
+		<!-- JiaThis bsharediv go 
+		<a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
+		<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=&amp;style=3&amp;fs=4&amp;textcolor=#fff&amp;bgcolor=#06C&amp;text=分享到">
+		</script>-->
+		<script>
+		//搜索按钮
+			$(".head_submits").click(function(){
+				var vals = $(".head_keywords").val();
+			
+			    $.post('__APP__/Home/Search/index',{"vals":vals}
+				)
+			});
+		//换肤功能
+			$(".skin").click(function(){
+				$(".skin_div").css("display","block");
+			});
+			$(".skin_img").click(function(){
+				//预加载背景功能
+				var srcs = $(this).attr("src")
+				//拆分src
+				var srca = srcs.split('_');
+				var src = srca['1'];
+				$("body").css("background",'#89E3FC url(__PUBLIC__/home/images/bg_'+src+')center top no-repeat fixed')
+				//判断是否确定换肤
+				if(confirm("确定要换肤吗？")){
+					$.post("__APP__/Home/Public/add",{"src":src},function(data){
+						if(data == 1){
+							alert("换肤成功！欢迎使用");
+							$(".skin_div").css("display","none");
+						}else if(data ==0 ){
+							alert("换肤失败！请重新选择换肤");
+						}
+					});
+					
+					$("body").css("background",'#89E3FC url(__PUBLIC__/home/images/bg_'+src+')center top no-repeat fixed')
+				}else{
+					location.reload() 
+				}
+			});
+			
+			//隐藏换肤功能按钮
+			$(".skin_worng").click(function(){
+				$(".skin_div").css("display","none");
+			});
+		</script>
+    <block name="script"></block>
+
+</html>

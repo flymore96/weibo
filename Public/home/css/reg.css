@@ -1,0 +1,91 @@
+/* 
+* @Author: xiechao
+* @Date:   2014-11-03 21:03:48
+* @Last Modified by:   xiechao
+* @Last Modified time: 2014-11-05 10:22:00
+*/
+*{
+    font-family:"微软雅黑";
+}
+body{
+    background:url(../images/bgreg2.jpg) no-repeat fixed;
+    /*background-size:cover;*/
+    opacity:0.93;
+}
+.main{
+    height:550px;
+    width:960px;
+    /*background:red;*/
+    margin:auto;
+    margin-top:80px;
+    margin-bottom:50px;
+}
+.logo{
+    margin-bottom:10px;
+}
+.box{
+    width:960px;
+    height:500px;
+    background:white;
+    border-radius:10px;
+
+}
+.title{
+    margin-left:330px;
+    padding-top:30px;
+}
+strong{
+    font-family:'微软雅黑';
+    font-size:30px;
+    font-weight: normal;
+}
+.box span{
+    color:#999;
+    margin-left:10px;
+}
+.box .title span a{
+    text-decoration:none;
+    color:#007DDB;
+    font-weight: bold;
+}
+.form{
+    margin-left:300px;
+    margin-top:30px;
+}
+.form a{
+    text-decoration:none;
+    color:#007DDB;
+}
+label{
+    text-align:right; 
+    width:100px; 
+    float:left;
+    /*font-family: '楷体';*/
+    /*font-weight:bold;*/
+}
+input{
+    width:196px;
+    height:16px;
+    padding:5px;
+    margin-bottom:10px;
+    border:1px solid #ccc;
+}
+button{
+    width:115px;
+    height:40px;
+    font-size:20px;
+    background:#2F81BF;
+    padding:5px;
+  /*  position:relative;
+    top:-25px;*/
+    border-radius:5px;
+    color:white;
+    font-weight:bold;
+    cursor: pointer;
+}
+input[name="vcode"]{
+    width:100px;
+}
+.vcode_img{
+    margin-left:50px;
+}

@@ -1,0 +1,146 @@
+<extend name="Public:header" />
+<block name="title">基本资料</block>
+<block name="link">
+	<link rel="stylesheet" href="__PUBLIC__/home/css/user_set.css">
+	<link rel="stylesheet" href="__PUBLIC__/home/css/face.css">
+	<link rel="stylesheet" href="__PUBLIC__/home/css/edu.css">
+    <script src="__PUBLIC__/home/js/school.js" type="text/javascript"></script>
+</block>
+<block name="main">
+	<div class="main">
+		<div class="list">
+			<img src="__PUBLIC__/home/uploads/headpic/{$Think.session.user.headpic}" width="120">
+			<ul>
+				<li class="tit"><img src="__PUBLIC__/home/images/3.jpg" height="10">个人资料</li>
+				<li class="link"><a href="__CONTROLLER__">&nbsp;&nbsp;&nbsp;基本资料</a></li>
+				<li class="link"><a href="javascript:">&nbsp;&nbsp;&nbsp;修改头像</a></li>
+				<li class="link"><a href="javascript:">&nbsp;&nbsp;&nbsp;教育信息</a></li>
+				<li class="link"><a href="javascript:">&nbsp;&nbsp;&nbsp;工作信息</a></li>
+				<li class="link"><a href="javascript:">&nbsp;&nbsp;&nbsp;个人标签</a></li>
+				<li class="tit"><img src="__PUBLIC__/home/images/3.jpg" height="10">隐私设置</li>
+				<li class="link"><a href="javascript:">&nbsp;&nbsp;&nbsp;修改密码</a></li>
+				<li class="link"><a href="javascript:">&nbsp;&nbsp;&nbsp;权限设置</a></li>
+				<li class="tit"><img src="__PUBLIC__/home/images/3.jpg" height="10">个人偏好</li>
+				<li class="link"><a href="javascript:">&nbsp;&nbsp;&nbsp;个性设置</a></li>
+				<li class="link"><a href="javascript:">&nbsp;&nbsp;&nbsp;屏蔽与黑名单</a></li>
+			</ul>
+		</div>
+		
+		<div id="content">
+			<div class="noteBox">
+				<span class="red">*</span>
+				为必填，完整的资料会为你带来更多关注<br>
+				如实填写行业、教育和工作等信息，能帮你找到微博里的同行、同学和同事。
+			</div>
+			<div>
+			<form action="__CONTROLLER__/dataSave" method="post">
+				<table border="0" cellspacing="0" cellpadding="0" class="tbList" >
+					<tr>
+						<th><span class="red">*</span>昵称：</th>
+						<td class="userId"><input type="text" name="userId" value="{$data.username}">
+						</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td class="prompt">1-12个中文、字母、数字、下划线或减号</td>
+					</tr>
+					<tr>
+						<th><span class="red">*</span>性别：</th>
+						<td><input type="radio" name="sex" checked value="2">女&nbsp;
+						<input type="radio" name="sex" value="1">男&nbsp;
+						<input type="radio" name="sex" value="0" checked>保密
+						
+						</td>
+					</tr>
+					<tr>
+						<th><span class="red">*</span>出生年月：</th>
+						<td><input type="date" name="birthday"></td>
+					</tr>
+					<tr>
+						<th>QQ：</th>
+						<td>
+							<input type="text" name="qq" value="{$data.qq}">
+						</td>
+					</tr>
+					<tr>
+						<th>常用邮箱：</th>
+						<td><input type="email" name="email" value="{$data.email}"></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td class="prompt">常用邮箱仅用来接收微博活动或通知邮件，不会公开显示</td>
+					</tr>
+					<tr>
+						<th>家庭住址：</th>
+						<td>{$city}</td>
+					</tr>
+					<tr>
+						<th>个人介绍：</th>
+						<td>
+							<textarea name="sign" rows="5" cols="35" value="{$data.sign}" class="set_text" ></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td><input type="image" src="__PUBLIC__/home/images/save.jpg" value="">
+						<a href=""><img src="__PUBLIC__/home/images/reset.jpg"></a>
+						</td>
+					</tr>
+				</table>
+			</form>
+			</div>
+		</div>
+	</div>
+</block>
+<block name="script">
+	<script>
+	    //利用ajax实现页面加载
+		$(".link:eq(1)").click(function(){
+			$("#content").load("__CONTROLLER__/face");
+		});
+		$(".link:eq(2)").click(function(){
+			$("#content").load("__CONTROLLER__/edu");
+		});
+		$(".link:eq(3)").click(function(){
+			$("#content").load("__CONTROLLER__/work");
+		});
+		$(".link:eq(4)").click(function(){
+			$("#content").load("__CONTROLLER__/tag");
+		});
+		$(".link:eq(5)").click(function(){
+			$("#content").load("__CONTROLLER__/password");
+		});
+		$(".link:eq(6)").click(function(){
+			$("#content").load("__CONTROLLER__/power");
+		});
+		$(".link:eq(7)").click(function(){
+			$("#content").load("__CONTROLLER__/other");
+		});
+		$(".link:eq(7)").click(function(){
+			$("#content").load("__CONTROLLER__/chat");
+		});
+		//ajax 加载页面结束
+	
+		var msg ="";
+		$("input[name=userId]").blur(function(){
+			$(this).next().remove();
+			$(this).next().remove();
+			checkUname(this);
+			$(this).after(msg);
+		});
+		//验证用户昵称函数
+		 function checkUname(obj){
+           
+            if($(obj).val().length == 0){
+               
+                msg = "<span class='red'>&nbsp;用户昵称不能为空</span>";
+			}else{
+			msg="&nbsp;<img src='__PUBLIC__/home/images/right.png'>";
+			}
+		}
+		$(".link").click(function(){
+			$(".link").removeClass("a_color")
+			$(this).addClass("a_color")
+		})
+	</script>
+</block>

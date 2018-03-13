@@ -1,0 +1,190 @@
+/* 
+* @Author: xiechao
+* @Date:   2014-11-19 14:54:17
+* @Last Modified by:   xiechao
+* @Last Modified time: 2014-11-22 00:57:38
+*/
+*{
+    font-family:'微软雅黑';
+}
+.private_main{
+    min-height:600px;
+    background:white;
+    /*opacity:0.85;*/
+}
+.private_ul li{
+    float:left;
+    width:100px;
+    background:#4E8291;
+    margin-left:3px;
+    margin-top:25px;
+    text-align:center;
+    font-size:15px;
+}
+.private_ul li:hover{
+    background:#222F33;
+    color:white;
+}
+
+.send{
+    clear:both;
+    position:relative;
+    left:180px;
+    top:10px;
+     background:#95CF10;
+    color:white;
+    width:67px;
+    height:26px;
+    border:1px solid #95CF10;
+    opacity:0.8;
+    border-radius:5px;
+
+}
+
+.private_content{
+    width:500px;
+    height:250px;
+    background:#ccc;
+    display:none;
+    clear:both;
+    z-index:100000;
+    margin:100px 50px;
+    position:fixed;
+    z-index:9999;
+    
+}
+
+.private_title{
+    height:30px;
+    background:#B4C8B9;
+    cursor:move;
+}
+.title_left{
+    line-height:30px;
+    margin-left:5px;
+    text-align:center;
+    font-size:15px;
+  /*  font-weight:bold;
+    font-family:'微软雅黑';*/
+}
+.private_close:hover{
+    background: #ccc;
+}
+.private_close{
+    float:right;
+    margin-top:5px;
+    margin-right:5px;
+    width:20px;
+    height:20px;
+    /*background:red;*/
+    border:1px solid #ccc;
+    text-align:center;
+    cursor:pointer;
+}
+.write_input{
+    width:400px;
+    padding:5px;
+    margin-left:5px;
+
+}
+.private_user{
+    float:left;
+}
+.plus{
+    margin-left:5px;
+    margin-top:5px;
+    font-size:15px;
+    float:left;
+}
+.minus{
+    margin-top:5px;
+    margin-left:5px;
+    font-size:15px;
+    float:left;
+    display:none;
+}
+.private_list{
+    clear:both;
+    width:412px;
+    height:150px;
+    border:1px solid black;
+    background:#fffbf0;
+    margin-left:51px;
+    position:absolute;
+    top:65px;
+    z-index:99;
+    display:none;
+    overflow:auto;
+}
+.list_li{
+    padding-left:5px;
+     cursor:pointer;
+}
+.private_text{
+    clear:both;
+     position:relative;
+     /*z-index:9;*/
+     top:20px;
+}
+.letter_title{
+    float:left;
+}
+.letter_text{
+    float:left;
+}
+.textarea{
+    resize:none;
+    margin-left:7px;
+    padding:5px;
+    width:402px;
+    height:200;
+}
+
+.send_letter{
+    clear:both;
+    float:right;
+    margin-top:20px;
+    margin-right:35px;
+}
+.send_button{
+    background:#95CF10;
+    color:white;
+    width:67px;
+    height:26px;
+    border:1px solid #95CF10;
+    opacity:0.8;
+    border-radius:5px;
+}
+
+.message{
+    width:600px;
+    min-height:500px;
+    /*background:red;*/
+    margin-top:30px;
+    margin-left:20px;
+    display:none;
+}
+.message_all{
+    clear:both;
+    border-bottom:1px solid #ccc;
+}
+.headpic1{
+    float:left;
+}
+.username1{
+    font-size:16px;
+    font-weight:bold;
+}
+.message_content{
+    margin-left:10px;
+    float:left;
+}
+.delmessage{
+    float:right;
+   width:67px;
+    height:26px;
+    border-radius:5px;
+    margin-right:40px;
+    margin-top:35px;
+    background:#95CF10;
+}

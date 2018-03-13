@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>文件上传</title>
+        <link rel="stylesheet" href="__PUBLIC__/home/css/uploadify.css">
+        <script src='__PUBLIC__/home/js/jquery.js'></script>
+        <script src='__PUBLIC__/home/js/jquery.uploadify.min.js'></script>
+    </head>
+    <body>
+        请选择相册上传
+        <select name="" id="op">
+            <foreach name="data" item="row">
+                <option value="{$row.id}">{$row.photo_name}</option>
+            </foreach>
+        </select>
+        <div id="imgs"></div>
+        <input id="file_upload" name="file_upload" type="file" multiple="true" value="" />
+       
+    </body>
+    <script>
+
+        var img = '';
+        pid = $('#op').val();
+        $('#op').change(function(){
+            $('#imgs').html("");
+            pid = $(this).val();
+            img = "";
+
+            $('#file_upload').uploadify({
+                'swf'      : '__PUBLIC__/home/swf/uploadify.swf',
+                'uploader' : '__CONTROLLER__/upload/pid/'+pid,
+                'buttonText' : '缩略图上传',
+                'onUploadSuccess' : function(file, data, response) {
+                
+                 img += "<img width='200px' src='__PUBLIC__/home/Uploads/ablum/"+data+"'>";
+                $('#imgs').html(img);
+                //$('#images').val(data);
+            }
+        });
+
+            
+        });
+        $('#file_upload').uploadify({
+                'swf'      : '__PUBLIC__/home/swf/uploadify.swf',
+                'uploader' : '__CONTROLLER__/upload/pid/'+pid,
+                'buttonText' : '缩略图上传',
+                'onUploadSuccess' : function(file, data, response) {
+                
+                 img += "<img width='200px' src='__PUBLIC__/home/Uploads/ablum/"+data+"'>";
+                $('#imgs').html(img);
+                //$('#images').val(data);
+            }
+        });
+    </script>
+</html>

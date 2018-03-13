@@ -1,0 +1,57 @@
+﻿/* 
+* @Author: lishihao
+* @Date:   2014-11-04 09:21:48
+* @Last Modified by:   lishihao
+* @Last Modified time: 2014-11-05 12:11:31
+*   首页Css样式文件
+*/
+  a{text-decoration:none}  
+  .rightMain{
+	width:316px;
+	height:auto;
+	background:#C9F1FF;
+	padding-top:4px;
+	}
+  .badge{
+	width:100px;
+	height:70px;
+	}
+  .eachHead{
+	height:82px;
+	margin-top:10px;
+	margin-left:14px;
+	}
+  .listen{
+	width:100%;
+	height:60px;
+	background:#B6DFEF;
+	}
+  .recommend{
+	width:300px;
+	height:260px;
+	background:#C9F1FF;
+	padding-left:14px;
+	 }
+  
+  .pic{
+	float:left;
+	margin-right:6px;	
+	}
+  .span{
+         font-size:14px;
+	 float:right;
+	 display:none;
+	}
+  .switch{
+	 font-size:12px;
+	 float:right;
+	 margin-right:10px;
+	 display:none;
+	 }
+  .each{
+	height:52px;
+	margin-top:8px;
+	}
+  .fontcolor{
+	color:#1F92C1;
+	}

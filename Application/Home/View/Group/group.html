@@ -1,0 +1,93 @@
+<extend name="Public:header" />
+<block name="title">分组</block>
+<block name="link">
+	<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+	 <link rel="stylesheet" href="__PUBLIC__/home/css/group.css" />
+	 <script src="__PUBLIC__/home/js/jquery.js"></script>     
+</block>
+
+<block name="main">
+<div class="wrap">
+	<div class="group">
+		<!-- 遮罩层 -->
+	    	<div id="mask" class="mask"></div>
+		<!-- 遮罩层结束 -->
+
+		<!-- 点击创建分组时出现如下内容 -->
+		<div class="wb_move">
+			<div class="move_title">
+				<span>发挥你的语言才华，写下最牛逼的组名</span>
+				<span class="close">×</span>
+			</div>
+			<div class="move_content">
+				<p>分组名：<input type="text" class="group_name"></p>
+				<p><a onclick="addgroup()" href="javascript:">确定</a></p>
+					
+			</div>
+		</div>
+	<!-- 点击创建分组时出现如上内容 -->
+
+		<div class="group_left">
+			<p>
+				.:::::::-<span class="glyphicon glyphicon-user"></span>&nbsp;关注分组-:::::::.
+			</p>
+			<div class="follow">
+				<a onclick="agroup(0,this)" class="a_color" href="javascript:"><span class="glyphicon glyphicon-question-sign" ></span>&nbsp;未分组用户</a>
+				
+				<foreach name="groupname" item="vo">
+					<a  onclick="agroup({$vo.id},this)" href="javascript:;"><span  class="glyphicon glyphicon-tint" style="font-size:12px"></span>&nbsp;{$vo.groupname}</a>
+				</foreach>
+				
+				<a class="new_group" href="javascript:"><span class="glyphicon glyphicon-plus" style="font-size:12px"></span>&nbsp;创建新分组</a>
+			</div>
+			<div class="hr"></div>
+	    	</div>
+		
+		<div class="group_right">
+			<!-- 通过ajax加载当前组下的成员信息 -->		
+		</div> 
+		
+		
+		<div class="clear"></div>
+	</div> <!--<group>结尾-->
+	
+	<div class="clear"></div>
+</div>
+</block>
+
+<block name="script">
+<script>
+	$(".group_right").load("__CONTROLLER__/thisGroup/id/0");
+	function agroup(id,obj){
+		$(".follow a").removeClass("a_color");
+		$(obj).addClass("a_color");
+		$(".group_right").load("__CONTROLLER__/thisGroup/id/"+id);
+	}	
+	
+	// 点击创建新组时的效果
+	$(".new_group").click(function(){
+		$(".mask").css("height",$(document).height());  
+	     	$(".mask").css("width",$(document).width());  
+	      $(".mask").show(); 
+	      $(".wb_move").css("display","block");
+	});
+	$(".move_title .close").click(function(){
+		$(".wb_move").hide();
+		$(".mask").hide(); 
+	});
+
+	function addgroup(){
+		var groupname = $(".group_name").val();
+		$.post("__CONTROLLER__/newGroup",{groupname:groupname},function(data){
+			if (data ==1) {
+				alert('成功');
+				window.location.href="__CONTROLLER__/group";
+			}else if (data ==0){
+				alert("创建分组失败");
+			};
+
+		});
+	}
+
+</script>
+</block>

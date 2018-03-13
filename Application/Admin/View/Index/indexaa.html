@@ -1,0 +1,65 @@
+<extend name="Public:index" />
+<block name="title">后台首页</block>
+<block name="content">
+    <ul class="list-unstyled spaced2">
+        <li>
+            <i class="icon-circle green"></i>
+            系统信息
+        </li>
+    </ul>
+    <div class="profile-user-info profile-user-info-striped">
+        <div class="profile-info-row">
+            <div class="profile-info-name"> ThinkPHP版本 </div>
+
+            <div class="profile-info-value">
+                <span class="editable" id="username">{$Think.version}</span>
+            </div>
+        </div>
+
+        <div class="profile-info-row">
+            <div class="profile-info-name"> 操作系统 </div>
+
+            <div class="profile-info-value">
+                <span class="editable" id="username">{$os}</span>
+            </div>
+        </div>
+
+        <div class="profile-info-row">
+            <div class="profile-info-name"> 服务器软件 </div>
+
+            <div class="profile-info-value">
+                <span class="editable" id="age">{$Think.server.server_software}</span>
+            </div>
+        </div>
+
+        <div class="profile-info-row">
+            <div class="profile-info-name"> PHP版本 </div>
+
+            <div class="profile-info-value">
+                <span class="editable" id="signup">{$Think.PHP_VERSION}</span>
+            </div>
+        </div>
+
+        <div class="profile-info-row">
+            <div class="profile-info-name"> Mysql版本 </div>
+
+            <div class="profile-info-value">
+                <span class="editable" id="login">{$mysql_ver}</span>
+            </div>
+        </div>
+
+        <div class="profile-info-row">
+            <div class="profile-info-name"> 开发团队 </div>
+
+            <div class="profile-info-value">
+                <span class="editable" id="about">四人四坑组</span>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script>
+        $(".nav-list>li:eq(0)").addClass('active');
+        $(".nav-list>li:eq(0)").addClass('open');
+    </script>
+</block>

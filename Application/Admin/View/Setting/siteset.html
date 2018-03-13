@@ -1,0 +1,97 @@
+<extend name="Public:index" />
+<block name="title">网站设置</block>
+<block name="content">
+    <ul class="list-unstyled spaced2">
+        <li>
+            <i class="icon-circle green"></i>
+            网站设置
+        </li>
+    </ul>
+    <div class="hr hr-24"></div>
+    <div class="col-xs-12">
+        <form action="__CONTROLLER__/sitesave" class="form-horizontal" method="post" role="form">
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 网站名称: </label>
+
+                <div class="col-sm-9">
+                    <input type="text" id="form-field-1" value="{$title}" name="title" class="col-xs-10 col-sm-5" />
+                </div>
+            </div>
+
+            <div class="space-4"></div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 网站备案号: </label>
+
+                <div class="col-sm-9">
+                    <input type="text" id="form-field-1" value="{$icpno}" name="icpno" class="col-xs-10 col-sm-5" />
+                </div>
+            </div>
+
+            <div class="space-4"></div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 网站关键词: </label>
+
+                <div class="col-sm-9">
+                    <input type="text" id="form-field-1" value="{$keywords}" name="keywords" class="col-xs-10 col-sm-5" />
+                </div>
+            </div>
+
+            <div class="space-4"></div>
+            
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 网站描述: </label>
+
+                <div class="col-sm-9">
+                    <input type="text" id="form-field-1" value="{$description}" name="description" class="col-xs-10 col-sm-5" />
+                </div>
+            </div>
+
+            <div class="space-4"></div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 联系方式: </label>
+
+                <div class="col-sm-9">
+                    <input type="text" id="form-field-1" value="{$contact}" name="contact" class="col-xs-10 col-sm-5" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+                <div class="col-sm-9">
+                    <button class="btn btn-warning btn-lg">保存设置</button>
+                </div>
+            </div>
+        </form>
+        <div class="hr hr-24"></div>
+        <ul class="list-unstyled spaced2">
+            <li>
+                <i class="icon-circle green"></i>
+                网站Logo修改    
+            </li>
+        </ul>
+        <form action="__CONTROLLER__/replogo" class="form-horizontal" method="post" role="form" enctype="multipart/form-data" >
+            <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <img style="border:1px solid #ccc" src="__PUBLIC__/home/uploads/static/{$logo}" alt="" width="124" height="35" /> </label>
+
+                    <div class="col-sm-9">
+                        <input type="file" id="form-field-1" name="logo" class="col-xs-10 col-sm-5" />
+                    </div>
+            </div>
+            <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+                    <div class="col-sm-9">
+                        <button class="btn btn-success">更换图片</button>
+                    </div>
+            </div>
+        </form>
+    </div>
+</block>
+<block name="script">
+    <script>
+        $(".nav-list>li:eq(1)").addClass('active');
+        $(".nav-list>li:eq(1)").addClass('open');
+    </script>
+</block>

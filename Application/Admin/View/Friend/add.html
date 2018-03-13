@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
+        <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/home/js/jquery.js"></script>
+        <style>
+            img{
+                width:70px;
+                height:70px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div style="width:660px;height:auto">
+            <form target="_parent" action="__CONTROLLER__/insert" enctype="multipart/form-data" method="post">
+                <table class="table table-hover">
+                    <tr>
+                        <td style="width:30%">链接名</td>
+                        <td style="width:70%">
+                            <input type="text" name="linkname"  />  
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td style="width:30%">URL</td>
+                        <td style="width:70%"><input type="url" name="linkurl" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="file" name="linklogo" ></td>
+                     </tr>         
+                    <tr>
+                        <td style="width:30%"></td>
+                        <td style="width:70%">
+                            <button type="submit" class="btn btn-success">确认添加</button>
+                        </td>
+                    </tr>
+            </table>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,133 @@
+<div class="private_main">
+    <ul class="private_ul">
+        <li>发信箱</li>
+        <li>已读私信</li>
+        <li>未读私信
+            <if condition="($num gt 0)">
+            <span class="letternum">({$num})</span>
+            </if>
+        </li>
+        <!-- <li>已读私信</li>
+        <li>未读私信</li> -->
+    </ul>
+    <button class="send">发私信</button>
+    <div class="message"></div>
+    <div class="private_content">
+
+        <div class="private_title">
+            <span class="title_left">发私信</span>
+            <span  class="private_close">X</span>
+        </div>
+        
+        <div class="private_write">
+            <div class="private_user">
+                <span>收信人:</span><input type="text" class="write_input" name="username" placeholder="输入你要发送私信的用户名"/>
+            </div>
+
+            <div class="plus">
+                <span class="glyphicon glyphicon-plus"></span>
+            </div>
+            <div class="minus">
+                <span class="glyphicon glyphicon-minus"></span>
+            </div>
+
+            <div class="private_list">
+                <ul>
+                    <foreach name="userlist" item="userlist">
+                        <li class="list_li">{$userlist.username}</li>
+                    </foreach>
+                </ul>
+            </div>
+
+            <div class="private_text">
+                <div class="letter_title">内 &nbsp;&nbsp;容:</div>
+                <div class="letter_text">
+                    <textarea  class="textarea" name="" id="" cols="30" rows="5"></textarea>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="send_letter">
+            <button class="send_button">发送</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        $('.send').click(function(){
+            $('.message').css('display','none');
+            $('.private_content').css('display','block');
+        }); 
+
+        $('.private_close').click(function(){
+            $('.private_content').css('display','none');
+        });
+
+        $('.plus').click(function(){
+            $(this).css('display','none');
+            $('.private_list').css('display','block');
+            $('.minus').css('display','block');
+        });
+
+         $('.minus').click(function(){
+            $(this).css('display','none');
+            $('.private_list').css('display','none');
+            $('.plus').css('display','block')
+        });
+
+         $('.list_li').hover(function(){
+            $(this).css('background','#D2E9FA');
+         },function(){
+            $(this).css('background','');
+         });
+
+         $('.list_li').click(function(){
+           var txt = $(this).text();
+           // alert(txt);
+           $('.write_input').val(txt);
+
+         });
+
+         $('.send_button').click(function(){
+            $.post('__APP__/Home/Letter/sendletter',{'tousername':$('.write_input').val(),'content':$('.textarea').val()},function(data){
+                if(data == 'success'){$('.private_list').css('display','none');
+                    alert('发送成功');
+
+                }else{
+                    alert('发送失败');
+                }
+            });
+         });
+
+          $('.private_ul li').eq(0).click(function(){
+            $(this).siblings().css('background','#4E8291');
+            $(this).siblings().css('color','');
+            $('.message').css('display','block');
+            $(this).css('background','#222F33');
+            $(this).css('color','white');
+            $('.message').load('__APP__/Home/Letter/send');
+         });
+            
+         $('.private_ul li').eq(1).click(function(){
+            $(this).siblings().css('background','#4E8291');
+            $(this).siblings().css('color','');
+            $('.message').css('display','block');
+            $(this).css('background','#222F33');
+            $(this).css('color','white');
+            $('.message').load('__APP__/Home/Letter/isread');
+         });   
+
+         $('.private_ul li').eq(2).click(function(){
+            $(this).siblings().css('background','#4E8291');
+            $(this).siblings().css('color','');
+            $(this).css('background','#222F33');
+            $(this).css('color','white');
+            $('.message').css('display','block');
+            $('.message').load('__APP__/Home/Letter/noread');
+         });
+
+    });
+   
+</script>

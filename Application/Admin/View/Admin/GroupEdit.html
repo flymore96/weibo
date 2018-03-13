@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
+        <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/home/js/jquery.js"></script>
+        <style>
+            .menu>a{
+                color:#004499;
+                text-decoration: none;
+                font-size: 12px;
+                font-family: '微软雅黑';
+            }
+            span{
+                font-size: 12px;
+                color:#ccc;
+            }
+            table{
+                font-size: 12px;
+                width:100%;
+                height:100%;
+                color:#444;
+                margin-top:10px; 
+            }
+            td{
+                border-bottom: 1px solid #eee;
+            }
+        </style>
+    </head>
+    <body>
+        <ol class="breadcrumb">
+          <li><a href="__CONTROLLER__/GroupList">返回</a></li>
+        </ol>
+        
+        <form action="__CONTROLLER__/GroupUpdate" method="post">
+            <table class="table table-hover">
+                <tr>
+                    <td>角色名称</td>
+                    <td>
+                    <input name="title" type="text" value="{$data.title}" required />
+                    <input type="hidden" name="id" value="{$data.id}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>是否启用</td>
+                    <td>
+                        <input type="radio" name="status" value="1" <if condition="$data.status eq 1 ">checked</if> />启用
+                        <input type="radio" name="status" value="0" <if condition="$data.status eq 0 ">checked</if> />禁止
+                    </td>
+                </tr>
+                <tr>
+                    <td>拥有权限</td>
+                    <td>
+                        <foreach name="d" item="row">
+                            <input type="checkbox" name="rules[]" value="{$row.id}" <in name="row.id" value="$data.rules">checked</in> />{$row.title}
+                        </foreach>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="提交" /></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,105 @@
+<foreach name="contents" item="content"> 
+    <div class="wb_detail">
+        <div class="headpic">
+            <img src="__PUBLIC__/home/uploads/headpic/{$content.headpic}" >     
+        </div>
+        <div class="wb_content">
+            <div class="wb_info_top">
+                <a href="__APP__/Home/Zone/index/id/{$content.uid}">{$content.username} </a>
+            </div>
+            <div class="wb_content_text">
+                {$content.content} 
+            </div>
+            <!-- <div class="other_wb">转发微博占位</div> -->
+            <div class="wb_content_bottom">
+                {$content.posttime|date="Y-m-d H:i:s",###}
+            </div>
+            
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="wb_bar">
+        <ul>
+            <li class="keep" onclick="keep({$content.id},this)"><a href="javascript:;"><if condition="$content.iskeep eq 1 ">取消收藏<else /> 收藏</if></a></li>
+            <li class="zhuanfa"><a href="javascript:;">转发</a></li>
+            <li class="pinglun">
+                <a onclick="loads({$content.id},this)" href="javascript:;">评论</a>
+            </li>
+            <li class="praise" onclick="praise({$content.id},this)"><a href="javascript:;"><span class="glyphicon glyphicon-thumbs-up zan"></span><em>{$content.num}</em></a></li>
+        </ul>
+    </div>
+
+<!-- 点击转发时出现如下内容 -->
+    <div class="wb_move">
+        <div class="move_title">
+            <span>转发微博</span>
+            <span class="close">×</span>
+        </div>
+        <div class="move_content">
+            <form action="__APP__/Home/Content/turn" method="post">
+                <div class="fill_content">
+                    <textarea name="content" id=""></textarea>
+                    <input type="hidden" name="id" value="{$content.id}"/>
+                </div>
+                <div class="fill_func">
+                    <!-- <a href="javascript:">转发微博</a> -->
+                    <button>转发</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<!-- 点击转发时出现如上内容 -->
+    
+    <!-- 点击评论时，显示如下内容 -->
+    <div class="wb_feed_repeat">
+        <div class="wb_feed_publish">
+            <div class="wb_face">
+                <img src="__PUBLIC__/home/uploads/headpic/{$Think.session.user.headpic}"/>
+            </div>
+            <div class="wb_publish">
+            <!-- <form  method="post"> -->
+                <div class="publish_input">
+                    <textarea class="reply_textarea" name="content" id=""></textarea>
+                </div>
+                <input class="contentid" type="hidden" name="id" value="{$content.id}"/>
+                <div class="publish_func">
+                    <span>as</span>
+                    <ul>
+                        <li>
+                            <label for="">
+                                <input type="checkbox" name="forward">
+                                <span>同时转发到我的微博</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="checkbox" name="forward">
+                                <span>同时评论给原作者</span>
+                            </label>
+                        </li>
+                    </ul>
+                    <button class="reply">发布</button>
+                </div>
+                <!-- </form> -->
+            </div>
+        </div>
+
+        <div class="repeat_list">
+            <div class="repeat_tab">
+                <!-- <ul>
+                    <li><a href="#">全部</a></li>
+                    <li><a href="#">热门</a></li>
+                    <li><a href="#">认证用户</a></li>
+                    <li><a href="#">关注的人</a></li>
+                </ul>
+                <span>共199条</span> -->
+            </div>
+            <div class="list_box">
+                <!-- 
+                    通过Ajax把每条微博的评论加载过来
+                    <div class="list_li"></div> 
+                -->
+            </div>
+        </div>
+    </div>
+</foreach> 

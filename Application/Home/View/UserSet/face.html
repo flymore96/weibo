@@ -1,0 +1,41 @@
+	<div class="face_nav">
+		<img src="__PUBLIC__/home/images/face_nav.png">
+	<div>
+	<!--上传头像-->
+	<div class="face_upload"> 
+		<form action="__CONTROLLER__/upload" enctype="multipart/form-data" method="post" >
+			<img src="__PUBLIC__/home/images/88.jpg" width="150">
+			<input type="file" class="photo" name="headpic"><br>
+			<span class="prompt">支持jpg、gif、png、gif、jpeg格式，文件小于2M真实高清头像更受欢迎</span><br>
+			<div class="btn"><input type="image" src="__PUBLIC__/home/images/face_upload.png"></div>
+		</form>
+	</div>
+	<!--头像缩略图-->
+	<div class="face_right">
+		<span class="right_font">请注意不同尺寸头像是否清晰。</span>
+		<img id="bigPhoto" src="__PUBLIC__/home/uploads/headpic/{$headpic}" width="200"><br>
+		<span class="right_font">大头像</span><br>
+		<span class="right_bottom"><a href="#">编辑当前头像</a></span>
+	</div>
+	<div class="mini">
+		<img src="__PUBLIC__/home/uploads/headpic/{$headpic}" width="78"><br>
+		<span class="right_fonts">中头像</span><br>
+		<img id="miniPhoto" src="__PUBLIC__/home/uploads/headpic/{$headpic}" width="48"><br>
+		<span class="right_fonts">小头像</span><br>
+	</div>
+	<script>
+		
+		//$.post('__CONTROLLER__/upload',function(data){
+		//	$("#sss").html(data)
+		//});
+		$(".face_upload").hover(function(){
+            $(this).css("border","2px solid #E1E1E1");
+            },function(){
+			$(this).css("border","1px solid #E1E1E1");
+        });
+	//	$(".photo").change(function(){
+	//		var val = $(this).val();
+	//		alert(val);
+	//		$("#bigPhoto").attr("src",val);
+	//	});
+	</script>

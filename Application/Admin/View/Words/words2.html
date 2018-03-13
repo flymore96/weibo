@@ -1,0 +1,27 @@
+<extend name="Public:index" />
+<block name="title">过滤词设置</block>
+<block name="style">
+	<link rel="stylesheet" href="__PUBLIC__/admin/css/words.css">
+</block>
+
+<block name="content">
+    <ul class="list-unstyled spaced2">
+        <li>
+            <i class="icon-circle green"></i>
+            过滤词设置
+        </li>
+    </ul>
+    <div class="hr hr-24"></div>
+    <div class="col-xs-12"></div>
+
+    <div class="words">
+		<a href="__CONTROLLER__/lists">列表</a>
+    </div>
+
+</block>
+<block name="script">
+    <script>
+        $(".nav-list>li:eq(3)").addClass('active');
+        $(".nav-list>li:eq(3)").addClass('open');
+    </script>
+</block>

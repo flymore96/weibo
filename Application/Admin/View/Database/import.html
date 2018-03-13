@@ -1,0 +1,36 @@
+<extend name="Public:index" />
+<block name="title">数据库还原</block>
+<block name="content">
+    <ul class="list-unstyled spaced2">
+        <li>
+            <i class="icon-circle green"></i>
+            数据库备份记录
+        </li>
+    </ul>
+    <div style="width:500px">  
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th>文件名</th>
+                    <th>操作</th>
+                </tr>
+        <foreach name="filename" item="row">
+            
+                <tr><td>{$row}</td>
+                    <td><a href="__CONTROLLER__/importsql/file/{$row|base64_encode}" onclick="return confirm('是否确定要导入该文件?')">导入</a>|
+                    <a href="__CONTROLLER__/delsql/file/{$row|base64_encode}" onclick="return confirm('是否确定要删除该文件?')">删除</a>|
+                    <a href="__CONTROLLER__/downsql/file/{$row|base64_encode}" onclick="return confirm('是否确定要下载该文件?')">下载</a>
+                    </td>
+                </tr>
+                
+        </foreach>
+            </tbody>
+        </table>
+    </div>   
+</block>
+<block name="script">
+    <script>
+        $(".nav-list>li:eq(5)").addClass('active');
+        $(".nav-list>li:eq(5)").addClass('open');
+    </script>
+</block>
